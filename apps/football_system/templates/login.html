@@ -11,9 +11,13 @@
                 <a href="{% url 'home' %}">Sistema gestor de jugadores</a>
             </div>
             <form method="post" class="form">
+                {% csrf_token %}
                 <h1>¡Bienvenido!</h1>
-                <input type="text" id="user_name" placeholder="Nombre de usuario">
-                <input type="password" id="password" placeholder="Contraseña">
+                {% if message %}
+                  <p>{{ message }}</p>
+                {% endif %}
+                <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+                <input type="password" id="password" name="password" placeholder="Contraseña" required>
                 <button id="btn_login" type="submit">Iniciar sesión</button>
                 <h4>¿No tenes cuenta?</h4> 
                 <a href="{% url 'signup' %}">Crear cuenta</a>
