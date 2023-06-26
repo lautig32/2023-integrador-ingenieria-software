@@ -1,0 +1,22 @@
+.menu{
+    background-color: #9DC08B;
+    list-style: none;
+    display: flex;
+    padding: 0%;
+    justify-content: space-between;
+}
+
+.menu li{
+    display: flex;
+}
+
+.menu li:last-child{
+    margin-left: auto;
+}
+
+.menu li a{ 
+    text-decoration: none;
+    color: white;
+    padding: 20px;
+}
+

@@ -1,3 +1,41 @@
-<h1>
-    Home
-</h1>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Inicio</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/home.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/tables.css">
+    </head>
+    <body>
+        {% include 'navbar.html' %}
+        <div class="background">
+            <div class="banner">
+                <div class="banner_info">
+                    <h2>PROXIMO PARTIDO</h2>
+                    <h4>dd/mm - 00:00hs</h4>
+                </div>
+                <div class="banner_teams">
+                    <h1>club 1 vs club 2</h1>
+                </div>
+            </div>
+            <div class="matches_table">
+                <table>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Clubs</th>
+                        <th>Resultado</th>
+                        <th>Acciones</th>
+                    </tr>
+                    {% for match in matches %}
+                    <tr>
+                        <td>{{ match.date }}</td>
+                        <td>{{ match.team_one }} vs {{ match.team_two }}</td>
+                        <td>{{ match.score_one }} - {{ match.score_two }}</td>
+                        <td><a href="#" target="">Info</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </body>
+</html>

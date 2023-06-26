@@ -1,3 +1,23 @@
-<h1>
-    Login
-</h1>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Iniciar sesión</title>
+        <link rel="stylesheet" type="text/css" href="../static/css/userform.css">
+        <script src="../static/js/userform.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="background">
+                <a href="{% url 'home' %}">Sistema gestor de jugadores</a>
+            </div>
+            <form method="post" class="form">
+                <h1>¡Bienvenido!</h1>
+                <input type="text" id="user_name" placeholder="Nombre de usuario">
+                <input type="password" id="password" placeholder="Contraseña">
+                <button id="btn_login" type="submit">Iniciar sesión</button>
+                <h4>¿No tenes cuenta?</h4> 
+                <a href="{% url 'signup' %}">Crear cuenta</a>
+            </form>
+        </div>
+    </body>
+</html>
