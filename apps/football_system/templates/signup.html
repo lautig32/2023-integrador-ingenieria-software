@@ -11,6 +11,7 @@
                 <a href="{% url 'home' %}">Sistema gestor de jugadores</a>
             </div>
             <form method="post" class="form">
+                {% csrf_token %}
                 <h1>¡Bienvenido!</h1>
                 <input type="email" id="email" placeholder="Email" required>
                 <input type="text" id="user_name" placeholder="Nombre de usuario" required>
