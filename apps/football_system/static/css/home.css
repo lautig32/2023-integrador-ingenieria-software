@@ -1,0 +1,46 @@
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.background{
+    background-color: #F5F5F5;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    height: 100%;
+}
+
+.banner{
+    background-color: #609966;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 80%;
+    height: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    color: #F5F5F5;
+}
+
+.banner_info{
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: center;
+}
+
+.banner_teams{
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
