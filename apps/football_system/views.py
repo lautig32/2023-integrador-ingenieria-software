@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 
 def home(request):
@@ -28,6 +28,12 @@ def login_view(request):
 def signup(request):
     
     return render(request, 'signup.html')
+
+def logout_view(request):
+
+    logout(request)
+    
+    return render(request, 'home.html')
 
 def profile(request):
     user = request.user
