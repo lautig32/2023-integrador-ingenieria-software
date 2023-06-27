@@ -34,12 +34,22 @@ def signup(request):
         confirm_password = request.POST['confirm_password']
         
         if password != confirm_password:
-            messages.error(request, 'Las contraseñas no coinciden.')
-            return redirect('signup') 
+            message = 'Las contraseñas no coinciden.'
+
+            context = {
+                'message': message
+            }
+
+            return render(request, 'signup.html', context)
         
         if User.objects.filter(username=username).exists():
-            messages.error(request, 'El nombre de usuario ya está en uso.')
-            return redirect('signup')  
+            message = 'El nombre de usuario ya está en uso.'
+
+            context = {
+                'message': message
+            }
+
+            return render(request, 'signup.html', context) 
 
         user = User.objects.create_user(username=username, password=password, email=email)
         user.is_active = True
