@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 
 def home(request):
     
@@ -26,6 +27,29 @@ def login_view(request):
     return render(request, 'login.html')
 
 def signup(request):
+    if request.method == 'POST':
+        email = request.POST['email']
+        username = request.POST['username']
+        password = request.POST['password']
+        confirm_password = request.POST['confirm_password']
+        
+        if password != confirm_password:
+            messages.error(request, 'Las contraseñas no coinciden.')
+            return redirect('signup') 
+        
+        if User.objects.filter(username=username).exists():
+            messages.error(request, 'El nombre de usuario ya está en uso.')
+            return redirect('signup')  
+
+        user = User.objects.create_user(username=username, password=password, email=email)
+        user.is_active = True
+        user.is_staff = True
+        user.is_superuser = True
+        user.save()
+     
+        login(request, user)
+        
+        return redirect('home')  
     
     return render(request, 'signup.html')
 

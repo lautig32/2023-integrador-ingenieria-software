@@ -13,10 +13,10 @@
             <form method="post" class="form">
                 {% csrf_token %}
                 <h1>¡Bienvenido!</h1>
-                <input type="email" id="email" placeholder="Email" required>
-                <input type="text" id="user_name" placeholder="Nombre de usuario" required>
-                <input type="password" id="password" placeholder="Contraseña" pattern=".{8,}" title="La contraseña debe tener al menos 8 caracteres" required>
-                <input type="password" id="confirm_password" placeholder="Confirmar contraseña" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+                <input type="password" id="password" name="password" placeholder="Contraseña" pattern=".{8,}" title="La contraseña debe tener al menos 8 caracteres" required>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmar contraseña" required>
                 <p id="password_error" style="color: red; display: none;">Las contraseñas no coinciden</p>
                 <button id="btn_signup" type="submit">Crear cuenta</button>
                 <h4>¿Ya tenes cuenta?</h4> 
