@@ -3,9 +3,22 @@
         <meta charset="UTF-8">
         <title>Mi perfil</title>
         <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/profile.css">
     </head>
     <body>
         {% include 'navbar.html' %}
-        {{ user }}
+        <div class="background">
+            <h1>Mis datos</h1>
+            <div class="account_data">       
+                <h3>Datos de cuenta</h3>
+                <p>Nombre de usuario: {{ user.username }}</p>
+                <p>Email: {{ user.email }}</p>
+            </div>
+            <div class="user_data">
+                <h3>Datos personales</h3>
+                <p>Club: {{ user.club }}</p>
+                <p>Puesto: {{ user.position }}</p>
+            </div>
+        </div>
     </body>
 </html>
