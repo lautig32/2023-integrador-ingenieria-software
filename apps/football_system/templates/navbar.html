@@ -14,9 +14,11 @@
                 <div class="dropdown">
                   <button class="dropbtn">{{ user.username }} &#9662;</button>
                   <div class="dropdown-content">
-                    <a href="{% url 'profile' %}">Mi Perfil</a>
-                    <a href="#">Cerrar Sesión</a>
-                    </div>
+                    <ul>
+                      <li><a href="{% url 'profile' %}">Mi Perfil</a></li>
+                      <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                    </ul>
+                  </div>  
                 </div>
               {% else %}
                 <a href="{% url 'login' %}">Iniciar sesión</a>
