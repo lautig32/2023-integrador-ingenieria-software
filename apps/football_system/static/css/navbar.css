@@ -12,6 +12,8 @@
 
 .menu li:last-child{
     margin-left: auto;
+    align-items: center;
+    justify-content: center;
 }
 
 .menu li a{ 
@@ -20,3 +22,45 @@
     padding: 20px;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+.dropbtn {
+    background-color:#9DC08B;
+    color: white;
+    font-size: medium;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: auto;
+    min-width: 150px;
+}
+
+.dropdown-content a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    left: auto;
+    right: 0;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+  }

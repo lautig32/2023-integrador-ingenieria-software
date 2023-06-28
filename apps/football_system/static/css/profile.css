@@ -1,0 +1,31 @@
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+.background{
+    display: block;  
+    width: 100%;
+    height: 100%;
+    padding-left: 30px;
+}
+
+.account_data,
+.user_data{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; 
+    width: 80%;
+    padding-left: 30px;
+}
+
+.account_data p,
+.user_data p{
+    padding-left: 30px;
+}
+
+
+
+
+  
