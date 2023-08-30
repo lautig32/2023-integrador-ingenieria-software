@@ -6,8 +6,8 @@
         <script src="../static/js/navbar.js"></script>
     </head>
     <body>
-        <ul class="menu">
-            <li><a href="{% url 'home' %}">Inicio</a></li>
+      <ul class="navbar">
+            <li><a href="{% url 'home' %}">Inicio</a></li>  
             <li><a href="{% url 'matches' %}">Partidos</a></li>
             <li>
                 {% if user.is_authenticated %}
@@ -15,8 +15,8 @@
                   <button class="dropbtn">{{ user.username }} &#9662;</button>
                   <div class="dropdown-content">
                     <ul>
-                      <li><a href="{% url 'profile' %}">Mi Perfil</a></li>
-                      <li><a href="{% url 'logout' %}">Cerrar Sesión</a></li>
+                      <li><a href="{% url 'profile' %}">Mi perfil</a></li>
+                      <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
                     </ul>
                   </div>  
                 </div>

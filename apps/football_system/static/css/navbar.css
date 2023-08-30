@@ -1,4 +1,4 @@
-.menu{
+.navbar{
     background-color: #9DC08B;
     list-style: none;
     display: flex;
@@ -6,20 +6,24 @@
     justify-content: space-between;
 }
 
-.menu li{
+.navbar li{
     display: flex;
 }
 
-.menu li:last-child{
+.navbar li:last-child{
     margin-left: auto;
     align-items: center;
     justify-content: center;
 }
 
-.menu li a{ 
+.navbar li a{ 
     text-decoration: none;
     color: white;
     padding: 20px;
+}
+
+.navbar li a:hover{
+    text-decoration: underline;
 }
 
 .dropdown {

@@ -3,9 +3,23 @@
         <meta charset="UTF-8">
         <title>Partidos</title>
         <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/matches.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/matches.js">
     </head>
     <body>
         {% include 'navbar.html' %}
-        
+        <div id="data-upload-container">
+            <a href="#" id="upload-player-link">Cargar jugador</a>
+            <a href="#">Cargar equipo</a>
+            <a href="#">Cargar partido</a>  
+        </div>
+        <div id="popup-upload-player">
+            <button id="close-btn">Cancelar</button>
+            <button type="submit" id="save-btn">Guardar</button>
+        </div>
+        <div id="upload-match">
+            <button type="submit" id="save-btn">Guardar</button>
+            <button id="close-btn">Cerrar</button>
+        </div>
     </body>
 </html>

@@ -4,11 +4,23 @@ document.getElementById("btn_login").addEventListener("click", function() {
   var password = document.getElementById("password").value;
   
   if (username === "usuario" && password === "contraseña") {
-    alert("Inicio de sesión exitoso");
+    alert("Inicio de sesión exitoso.");
   } else {
-    alert("Usuario o contraseña incorrectos");
+    alert("Usuario o contraseña incorrectos.");
   }
 });
+
+//validar nombre de usuario
+function validateUsername(){
+  var usernameInput = document.getElementById("username");
+  var usernameError = document.getElementById("username_error");
+  if(usernameInput.value == list.value){
+    usernameError.style.display = "El nombre de usuario ya existe.";
+  }
+  else{
+    usernameError.style.display = "none";
+  }
+}
 
 
 //validar contraseña del singup
@@ -18,9 +30,9 @@ var passwordError = document.getElementById("password_error");
 
 function validatePassword() {
   if (passwordInput.value !== confirmPasswordInput.value) {
-      passwordError.style.display = "block";
+      text = "Las contraseñas no coinciden.";
   } else {
-      passwordError.style.display = "none";
+      
   }
 }
 confirmPasswordInput.addEventListener("input", validatePassword);
@@ -33,8 +45,8 @@ document.getElementById("signupBtn").addEventListener("click", function() {
   var confirm_password = document.getElementById("confirm_password").value;
 
   if (username && password) {
-    alert("Usuario registrado exitosamente");
+    alert("Usuario registrado exitosamente.");
   } else {
-    alert("Por favor, completa todos los campos");
+    alert("Por favor, completa todos los campos.");
   }
 });
