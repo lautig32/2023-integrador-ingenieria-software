@@ -8,17 +8,33 @@
     <body>
         {% include 'navbar.html' %}
         <div class="background">
-            <h1>Mis datos</h1>
-            <div class="account_data">       
-                <h3>Datos de cuenta</h3>
-                <p>Nombre de usuario: {{ user.username }}</p>
-                <p>Email: {{ user.email }}</p>
+            <h1>Mi perfil</h1>
+            <div class="account-data">       
+                <div class="profile-fields">
+                    <label for="name">Nombre:</label>
+                    <input type="text" id="name" value={{ user.username }} disabled>
+                    <button class="btn" id="btn-edit">Editar</button>
+                    <button class="btn" id="btn-save" style="display: none;">Guardar</button>
+                </div>
+                <div class="profile-fields">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" value={{ user.email }} disabled>
+                    <button class="btn" id="btn-edit">Editar</button>
+                    <button class="btn" id="btn-save" style="display: none;">Guardar</button>
+                </div>
+                <div class="profile-fields">
+                    <label for="name">Club:</label>
+                    <input type="text" id="name" value={{ user.club }} disabled>
+                    <button class="btn" id="btn-edit">Editar</button>
+                    <button class="btn" id="btn-save" style="display: none;">Guardar</button>
+                </div>
+                <div class="profile-fields"> 
+                    <label for="name">Puesto:</label>
+                    <input type="text" id="name" value={{ user.position }} disabled>
+                    <button class="btn" id="btn-edit">Editar</button>
+                    <button class="btn" id="btn-save" style="display: none;">Guardar</button>
+                </div>
             </div>
-            <div class="user_data">
-                <h3>Datos personales</h3>
-                <p>Club: {{ user.club }}</p>
-                <p>Puesto: {{ user.position }}</p>
-            </div>
-        </div>
+        </div>   
     </body>
 </html>

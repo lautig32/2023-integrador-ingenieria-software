@@ -3,9 +3,85 @@
         <meta charset="UTF-8">
         <title>Partidos</title>
         <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/matches.css">
     </head>
     <body>
         {% include 'navbar.html' %}
-        
+        <div class="btn-container">
+            <div class="data-upload-container" id="player-upload-container">
+                <button class="btn" onclick="openPopupPlayer()">Cargar jugador</button>
+                <div class="popup-window" id="popup-upload-player">
+                    <h1>Alta de jugador</h1>
+                    <form method="post" class="form">
+                        {% csrf_token %}
+                        <input type="text" id="player-name" placeholder="Nombre del jugador">
+                        
+                        <div class="btn-container">
+                            <button class="btn-form" id="close-btn" onclick="closePopupPlayer()">Cancelar</button>
+                            <button class="btn-form" type="submit" id="save-btn" onclick="closePopupPlayer()">Guardar</button>
+                        </div>
+                    </form>
+                </div> 
+            </div>
+            <div class="data-upload-container" id="team-upload-container">
+                <button class="btn" onclick="openPopupTeam()">Cargar equipo</button>
+                <div class="popup-window" id="popup-upload-team">
+                    <h1>Alta de equipo</h1>
+                    <form method="post" class="form">
+                        {% csrf_token %}
+                        <input type="text" id="team-name" placeholder="Nombre del equipo">
+
+                        <div class="btn-container">
+                            <button class="btn-form" id="close-btn" onclick="closePopupTeam()">Cancelar</button>
+                            <button class="btn-form" type="submit" id="save-btn" onclick="closePopupTeam()">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="data-upload-container" id="match-upload-container">
+                <button class="btn" onclick="openPopupMatch()">Cargar partido</button>
+                <div class="popup-window" id="popup-upload-match">
+                    <h1>Alta de partido</h1>
+                    <form method="post" class="form">
+                        {% csrf_token %}
+                        <input type="text" id="team-one-name" placeholder="Nombre del primer equipo">   
+                        <input type="text" id="team-two-name" placeholder="Nombre del segundo equipo">   
+                    
+                        <div class="btn-container">
+                            <button class="btn-form" id="close-btn" onclick="closePopupMatch()">Cancelar</button>
+                            <button class="btn-form" type="submit" id="save-btn" onclick="closePopupMatch()">Guardar</button>
+                        </div>
+                    </form>
+                </div> 
+            </div>
+        </div>
+
+        <script>
+            let popupPlayer = document.getElementById("popup-upload-player");
+            function openPopupPlayer(){
+                popupPlayer.classList.add("open-popup");
+            }
+            function closePopupPlayer(){
+                popupPlayer.classList.remove("open-popup");
+            }
+
+            let popupTeam = document.getElementById("popup-upload-team");
+            function openPopupTeam(){
+                popupTeam.classList.add("open-popup");
+            }
+            function closePopupTeam(){
+                popupTeam.classList.remove("open-popup");
+            }
+
+            let popupMatch = document.getElementById("popup-upload-match");
+            function openPopupMatch(){
+                popupMatch.classList.add("open-popup");
+            }
+            function closePopupMatch(){
+                popupMatch.classList.remove("open-popup");
+            }
+
+        </script>
+
     </body>
 </html>

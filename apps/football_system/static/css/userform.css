@@ -39,31 +39,20 @@ body {
   height: 100%;
 }
 
-.form input[type="text"],
-input[type="password"],
-input[type="email"] {
-  width: 50%;
-  padding: 10px;
-  margin: 10px;
-  border: none;
-  border-radius: 6px;
-  box-sizing: border-box;
-}
-
-.form button[type="submit"]{
+.btn{
   padding: 10px 20px;
   background-color: #9DC08B;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 15px;
   cursor: pointer;
   margin-top: 5px;
   margin-bottom: 20px;
   text-decoration: none;
 }
 
-.form button[type="submit"]:hover{
-  background-color: #87A672;
+.btn:hover{
+  background-color: #40513B;
 }
 
 .form a{
@@ -74,5 +63,18 @@ input[type="email"] {
 }
 
 .form a:hover {
-  color:cornsilk;
+  text-decoration: underline;
+}  
+
+input{
+  position: flex;
+  align-items: center;
+  width: 80%;
+  padding: 10px;
+  margin: 10px;
+  border: none;
+  border-radius: 15px;
+  box-sizing: border-box; 
 }
+
+
