@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Editar Partido</title>
+</head>
+<body>
+    <h1>Editar Partido</h1>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <div>
+            {% if form.instance.local_team_image %}
+            <h2>Previsualización de la Imagen del Equipo Local</h2>
+            <img src="{{ form.instance.local_team_image.url }}" alt="{{ form.instance.local_team.name }}">
+            {% endif %}
+        </div>
+
+        <div>
+            <!-- Previsualización de la Imagen del Equipo Visitante -->
+            {% if form.instance.visiting_team_image %}
+            <h2>Previsualización de la Imagen del Equipo Visitante</h2>
+            <img src="{{ form.instance.visiting_team_image.url }}" alt="{{ form.instance.visiting_team.name }}">
+            {% endif %}
+        </div>
+        
+        <button type="submit">Guardar Cambios</button>
+    </form>
+    <a href="{% url 'match_list' %}">Volver a la lista de partidos</a>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eliminar Club</title>
+</head>
+<body>
+    <h1>Eliminar Club</h1>
+    <p>¿Estás seguro de que deseas eliminar este club?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+    </form>
+    <a href="{% url 'club_list' %}">Cancelar</a>
+</body>
+</html>

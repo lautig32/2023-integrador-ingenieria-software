@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Clubes</title>
+</head>
+<body>
+    <h1>Lista de Clubes</h1>
+    <ul>
+        {% for club in clubs %}
+            <li>{{ club.name }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'club_create' %}">Crear Club</a>
+</body>
+</html>
