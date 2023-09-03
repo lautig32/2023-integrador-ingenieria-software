@@ -92,78 +92,78 @@ class Match(models.Model):
     def __str__(self):
         return f"{self.local_team} vs {self.visiting_team}"
 
-    def clean(self):
-        # Obtener las imágenes de los equipos
-        local_team_image = self.local_team_image
-        visiting_team_image = self.visiting_team_image
+    # def clean(self):
+    #     # Obtener las imágenes de los equipos
+    #     local_team_image = self.local_team_image
+    #     visiting_team_image = self.visiting_team_image
 
-        if local_team_image:
-            recognition_local_team_image = self.process_image_local_team(local_team_image)
+    #     if local_team_image:
+    #         recognition_local_team_image = self.process_image_local_team(local_team_image)
 
-            if self.recognition_local_team_image:
-                self.recognition_local_team_image.delete()
+    #         if self.recognition_local_team_image:
+    #             self.recognition_local_team_image.delete()
 
-            self.recognition_local_team_image.save(
-                'processed_{}_local_team.jpg'.format(self.id),
-                File(recognition_local_team_image)
-            )
+    #         self.recognition_local_team_image.save(
+    #             'processed_{}_local_team.jpg'.format(self.id),
+    #             File(recognition_local_team_image)
+    #         )
 
-            recognition_local_team_image.close()
-            # os.remove(recognition_local_team_image)
+    #         recognition_local_team_image.close()
+    #         # os.remove(recognition_local_team_image)
 
-        if visiting_team_image:
-            recognition_visiting_team_image = self.process_image_visiting_team(visiting_team_image)
+    #     if visiting_team_image:
+    #         recognition_visiting_team_image = self.process_image_visiting_team(visiting_team_image)
 
-            if self.recognition_visiting_team_image:
-                self.recognition_visiting_team_image.delete()
+    #         if self.recognition_visiting_team_image:
+    #             self.recognition_visiting_team_image.delete()
 
-            self.recognition_visiting_team_image.save(
-                'processed_{}_visiting_team.jpg'.format(self.id),
-                File(recognition_visiting_team_image)
-            )
+    #         self.recognition_visiting_team_image.save(
+    #             'processed_{}_visiting_team.jpg'.format(self.id),
+    #             File(recognition_visiting_team_image)
+    #         )
 
-            recognition_visiting_team_image.close()
+    #         recognition_visiting_team_image.close()
 
-        return super().clean()
+    #     return super().clean()
     
-    def process_image_local_team(self, image):
-        images_search = []
-                
-        # List of images to search for faces
-        qs_search_players = Player.objects.filter(team=self.local_team)
+    # def process_image_local_team(self, image):
+    #     images_search = []
 
-        for qs in qs_search_players:
-            images_search.append(qs.photo.url)
+    #     # List of images to search for faces
+    #     qs_search_players = Player.objects.filter(team=self.local_team)
 
-        face_recognition = FaceRecognition(images_search)
+    #     for qs in qs_search_players:
+    #         images_search.append(qs.photo.url)
 
-        imagen_objetivo_path = f"{self.local_team_image.url}"
+    #     face_recognition = FaceRecognition(images_search)
 
-        result_image = face_recognition.recognize_faces(imagen_objetivo_path)
+    #     imagen_objetivo_path = f"{self.local_team_image.url}"
 
-        processed_image = result_image
-        return processed_image
+    #     result_image = face_recognition.recognize_faces(imagen_objetivo_path)
+
+    #     processed_image = result_image
+    #     return processed_image
     
-    def process_image_visiting_team(self, image):
-        images_search = []
+    # def process_image_visiting_team(self, image):
+    #     images_search = []
                 
-        # List of images to search for faces
-        qs_search_players = Player.objects.filter(team=self.visiting_team)
+    #     # List of images to search for faces
+    #     qs_search_players = Player.objects.filter(team=self.visiting_team)
 
-        for qs in qs_search_players:
-            images_search.append(qs.photo.url)
+    #     for qs in qs_search_players:
+    #         images_search.append(qs.photo.url)
 
-        for qs in qs_search_players:
-            images_search.append(qs.photo.url)
+    #     for qs in qs_search_players:
+    #         images_search.append(qs.photo.url)
 
-        face_recognition = FaceRecognition(images_search)
+    #     face_recognition = FaceRecognition(images_search)
 
-        imagen_objetivo_path = f"{self.visiting_team_image.url}"
+    #     imagen_objetivo_path = f"{self.visiting_team_image.url}"
 
-        result_image = face_recognition.recognize_faces(imagen_objetivo_path)
+    #     result_image = face_recognition.recognize_faces(imagen_objetivo_path)
 
-        processed_image = result_image
-        return processed_image
+    #     processed_image = result_image
+    #     return processed_image
 
 class Player(models.Model):
     name = models.CharField(max_length=100)
