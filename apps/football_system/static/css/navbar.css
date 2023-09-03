@@ -40,6 +40,10 @@
     cursor: pointer;
 }
 
+.dropbtn:hover{
+  text-decoration: underline;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;

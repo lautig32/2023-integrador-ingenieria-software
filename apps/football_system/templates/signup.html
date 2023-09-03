@@ -4,6 +4,7 @@
         <title>Crear cuenta</title>
         <link rel="stylesheet" type="text/css" href="../static/css/userform.css">
         <script src="../static/js/userform.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     </head>
     <body>
         <div class="container">
@@ -14,13 +15,30 @@
                 {% csrf_token %}
                 <h1>¡Bienvenido!</h1>
                 {% if message %}
-                  {{ message }}
+                    {{ message }}
+                    
+                    <input type="email" id="email" name="email" value="{{email}}" required>
+                    <input type="text" id="username" name="username" value="{{username}}" required>
+                    <input type="password" id="password" name="password" value="{{password}}" pattern=".{8,}" title="La contraseña debe tener al menos 8 caracteres" required>
+                    <input type="password" id="confirm_password" name="confirm_password" value="#" required>
+                    
+                    <button id="btn-signup" type="submit">Crear cuenta</button>
+                {% else %}
+                    
+                <div class="data-container">
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>    
+                </div>    
+                <div class="data-container">
+                    <input type="password" id="password" name="password" placeholder="Contraseña" pattern=".{8,}" title="La contraseña debe tener al menos 8 caracteres" required>
+                    <img src="apps\football_system\static\img\eye-close.png">
+                </div>
+                <div class="data-container">
+                    <input type="password" id="confirm_password" name="confirm_password" pattern="" placeholder="Confirmar contraseña" required>
+                    
+                </div>
+                <button class="btn" id="btn-signup" type="submit">Crear cuenta</button>
                 {% endif %}
-                <input type="email" id="email" name="email" placeholder="Email" required>
-                <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
-                <input type="password" id="password" name="password" placeholder="Contraseña" pattern=".{8,}" title="La contraseña debe tener al menos 8 caracteres" required>
-                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirmar contraseña" required>
-                <button id="btn-signup" type="submit">Crear cuenta</button>
                 <h4>¿Ya tenes cuenta?</h4> 
                 <a href="{% url 'login' %}">Iniciar sesión</a>
             </form>
