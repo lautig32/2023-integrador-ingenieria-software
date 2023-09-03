@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Partidos</title>
+</head>
+<body>
+    <h1>Lista de Partidos</h1>
+    <ul>
+        {% for match in matches %}
+            <li>{{ match }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'match_create' %}">Crear Club</a>
+</body>
+</html>
