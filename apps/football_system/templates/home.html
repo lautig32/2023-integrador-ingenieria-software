@@ -18,24 +18,6 @@
                     <h1>club 1 vs club 2</h1>
                 </div>
             </div>
-            <div class="matches-table">
-                <table>
-                    <tr>
-                        <th>Fecha</th>
-                        <th>Clubs</th>
-                        <th>Resultado</th>
-                        <th>Acciones</th>
-                    </tr>
-                    {% for match in matches %}
-                    <tr>
-                        <td>{{ match.date }}</td>
-                        <td>{{ match.team_one }} vs {{ match.team_two }}</td>
-                        <td>{{ match.score_one }} - {{ match.score_two }}</td>
-                        <td><a href="#" target="">Info</a></td>
-                    </tr>
-                    {% endfor %}
-                </table>
-            </div>
         </div>
     </body>
 </html>

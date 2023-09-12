@@ -3,7 +3,7 @@ from ..models import Club, Person, FootballCategory, Team, Match, Player, Player
 
 class ClubListView(ListView):
     model = Club
-    template_name = 'list/club_list.html'
+    template_name = 'clubs.html'
     context_object_name = 'clubs'
 
 class PersonListView(ListView):
@@ -23,12 +23,12 @@ class TeamListView(ListView):
 
 class MatchListView(ListView):
     model = Match
-    template_name = 'list/match_list.html'
+    template_name = 'matches.html'
     context_object_name = 'matches'
 
 class PlayerListView(ListView):
     model = Player
-    template_name = 'list/player_list.html'
+    template_name = 'players.html'
     context_object_name = 'players'
 
 class PlayerSuspensionListView(ListView):

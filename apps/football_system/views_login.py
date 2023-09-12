@@ -127,8 +127,14 @@ def logout_view(request):
 def profile(request):
     user = request.user
 
+    user_type_choices = Person.TypeAdministrator.choices
+
+    clubs = Club.objects.all()
+
     context = {
-        'user': user
+        'user': user,
+        'clubs': clubs,
+        'user_type_choices': user_type_choices,
     }
 
     return render(request, 'profile.html', context)

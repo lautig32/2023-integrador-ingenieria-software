@@ -1,19 +1,33 @@
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
-.matches_table{
+.background{
+    background-color: #F5F5F5;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.table-container{
+    padding-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+table{
+    table-layout: fixed;
+    width: 80%;
     border-collapse: collapse;
-    width: 100%;
-}
-
-.matches_table th {
-    background-color: 9DC08B;
-    color: #f2f2f2;
-}
-
-.matches_table td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
     background-color: #EDF1D6;
-    color: black;
+}
+th {
+    background-color: #9DC08B;
+}
+td{
+    padding: 10px;
 }
       

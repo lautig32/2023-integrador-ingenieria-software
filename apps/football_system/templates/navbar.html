@@ -8,10 +8,11 @@
     <body>
       <ul class="navbar">
             <li><a href="{% url 'home' %}">Inicio</a></li>  
-            <li><a href="{% url 'match_list' %}">Partidos</a></li>
+            <li><a href="{% url 'matches' %}">Partidos</a></li>
+            <li><a href="{% url 'clubs' %}">Clubs</a></li>
             <li>
                 {% if user.is_authenticated %}
-                <div class="dropdown">
+                <div class="dropdown">  
                   <button class="dropbtn">{{ user.username }} &#9662;</button>
                   <div class="dropdown-content">
                     <ul>

@@ -4,6 +4,7 @@
         <title>Iniciar sesión</title>
         <link rel="stylesheet" type="text/css" href="../static/css/userform.css">
         <script src="../static/js/userform.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     </head>
     <body>
         <div class="container">
@@ -15,17 +16,51 @@
                 <h1>¡Bienvenido!</h1>
                 {% if message %}
                     {{ message }}
-                    <input type="text" id="username" name="username" value="{{email}}" required>
-                    <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                    <div class="data-container">
+                        <input type="text" id="username" name="username" value="{{username}}" required>
+                    </div>
+                    <div class="data-container">
+                        <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                        <span class="eye" onclick="changeEyePw()">
+                            <i id="open-eye-pw" class="fa-solid fa-eye"></i>
+                            <i id="close-eye-pw" class="fa-solid fa-eye-slash"></i>
+                        </span>
+                    </div>
                     <button class="btn" id="btn-login" type="submit">Iniciar sesión</button>
                 {% else %}
-                    <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
-                    <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                    <div class="data-container">
+                        <input type="text" id="username" name="username" placeholder="Nombre de usuario" required>
+                    </div>
+                    <div class="data-container">
+                        <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                        <span class="eye" onclick="changeEyePw()">
+                            <i id="open-eye-pw" class="fa-solid fa-eye"></i>
+                            <i id="close-eye-pw" class="fa-solid fa-eye-slash"></i>
+                        </span>
+                    </div>
                     <button class="btn" id="btn-login" type="submit">Iniciar sesión</button>
                 {% endif %}
                 <h4>¿No tenes cuenta?</h4> 
                 <a href="{% url 'signup' %}">Crear cuenta</a>
             </form>
         </div>
+        <script>
+            function changeEyePw(){
+                var password = document.getElementById("password");
+                var open_eye_pw = document.getElementById("open-eye-pw");
+                var close_eye_pw = document.getElementById("close-eye-pw");   
+          
+                if (password.type ===  'password'){
+                    password.type = "text";
+                    open_eye_pw.style.display = "block";
+                    close_eye_pw.style.display = "none";
+                }
+                else{
+                    password.type = "password";
+                    open_eye_pw.style.display = "none";
+                    close_eye_pw.style.display = "block";
+                }
+            }
+        </script>
     </body>
 </html>
