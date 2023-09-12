@@ -1,9 +1,25 @@
+::-webkit-scrollbar{
+    width: 10px;
+    height: 15px;
+}
+::-webkit-scrollbar-track{
+    background-color: #EDF1D6;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #609966;
+    border-radius: 15px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #9DC08B;
+}
+
 .navbar{
     background-color: #9DC08B;
     list-style: none;
     display: flex;
     padding: 0%;
     justify-content: space-between;
+    width: 100%;
 }
 
 .navbar li{

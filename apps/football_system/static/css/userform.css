@@ -69,12 +69,25 @@ body {
 input{
   position: flex;
   align-items: center;
-  width: 80%;
+  width: 90%;
   padding: 10px;
   margin: 10px;
   border: none;
-  border-radius: 15px;
+  border-radius: 15px;  
   box-sizing: border-box; 
 }
 
+.data-container{
+  position:relative;
+  margin-left: 10%;
+  width: 85%;
+}
 
+#open-eye-pw, #open-eye-cpw{
+  display: none;
+}
+
+span{
+  position: absolute;
+  padding-top: 3.5%;
+}

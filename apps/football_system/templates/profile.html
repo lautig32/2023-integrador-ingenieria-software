@@ -4,37 +4,70 @@
         <title>Mi perfil</title>
         <link rel="stylesheet" type="text/css" href="../static/css/index.css">
         <link rel="stylesheet" type="text/css" href="../static/css/profile.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
     </head>
     <body>
         {% include 'navbar.html' %}
         <div class="background">
             <h1>Mi perfil</h1>
             <div class="account-data">       
-                <div class="profile-fields">
-                    <label for="name">Nombre:</label>
-                    <input type="text" id="name" value={{ user.username }} disabled>
-                    <button class="btn" id="btn-edit">Editar</button>
-                    <button class="btn" id="btn-save" style="display: none;">Guardar</button>
-                </div>
-                <div class="profile-fields">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" value={{ user.email }} disabled>
-                    <button class="btn" id="btn-edit">Editar</button>
-                    <button class="btn" id="btn-save" style="display: none;">Guardar</button>
-                </div>
-                <div class="profile-fields">
-                    <label for="name">Club:</label>
-                    <input type="text" id="name" value={{ user.club }} disabled>
-                    <button class="btn" id="btn-edit">Editar</button>
-                    <button class="btn" id="btn-save" style="display: none;">Guardar</button>
-                </div>
-                <div class="profile-fields"> 
-                    <label for="name">Puesto:</label>
-                    <input type="text" id="name" value={{ user.position }} disabled>
-                    <button class="btn" id="btn-edit">Editar</button>
-                    <button class="btn" id="btn-save" style="display: none;">Guardar</button>
-                </div>
+                <form method="post" class="form">
+                    {% csrf_token %}
+                    <div class="profile-fields">
+                        <label for="name">Nombre:</label>
+                        <input type="text" class="input" id="name" value="{{ user.username }}" disabled>
+                    </div>
+                    <div class="profile-fields">
+                        <label for="email">Email:</label>
+                        <input type="email" class="input" id="email" value="{{ user.email }}" disabled>
+                    </div>
+                    <div class="profile-fields">
+                        <label for="name">Club:</label>
+                        <select class="select" id="club-slct" value="{{ club.name }}" disabled>
+                            <option value="" selected="selected">Elegir opción</option>
+                            {% for club in clubs %}
+                                <option value="{{club.id}}">{{club.name}}</option>
+                            {% endfor %}
+                        </select>    
+                    </div>
+                    <div class="profile-fields"> 
+                        <label for="name">Puesto:</label>
+                        <select class="select" id="user-type-slct" value="{{ usertype.type }}" disabled>
+                            <option selected="selected">Elegir opción</option>
+                            {% for id,value in user_type_choices %}
+                                <option value="{{id}}">{{value}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="btn-container">
+                        <button class="btn" id="edit-btn">Editar</button>
+                        <button class="btn" id="cancel-btn" style="display: none;">Cancelar</button>
+                        <button class="btn" type="submit" id="save-btn" style="display: none;">Guardar</button>
+                    </div>
+                </form>
             </div>
         </div>   
+        <script>
+            document.getElementById('edit-btn').addEventListener('click', function (event) {
+                event.preventDefault(); // Prevent form submission or page reload
+        
+                let selects = document.getElementsByClassName('select');
+                let inputs = document.getElementsByClassName('input');
+                let cancelBtn = document.getElementById('cancel-btn');
+                let saveBtn = document.getElementById('save-btn');
+        
+                for (let i = 0; i < selects.length; i++) {
+                    selects[i].removeAttribute('disabled');
+                }
+        
+                for (let i = 0; i < inputs.length; i++) {
+                    inputs[i].removeAttribute('disabled');
+                }
+
+                this.style.display = 'none';
+                cancelBtn.style.display = 'inline-block';
+                saveBtn.style.display = 'inline-block';
+            });
+        </script>
     </body>
 </html>

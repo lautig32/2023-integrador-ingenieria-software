@@ -56,34 +56,3 @@ document.getElementById("signupBtn").addEventListener("click", function() {
   }
 });
 
-
-//js para visualizar contraseña
-const passwordInput = document.querySelector(" pass-field input");
-const eyeIcon = document .querySelector(" pass-field i");
-const requirementList = document.querySelectorAll(".requirement-list li");
-
-const requirements = [
-  { regex: /.{8,}/, index: 0 }, // Minimum of 8 characters
-]
-
-passwordInput.addEventListener("keyup", (e) => {
-  requirements.forEach(item => {
-      // Check if the password matches the requirement regex
-      const isValid = item.regex.test(e.target.value);
-      const requirementItem = requirementList[item.index];
-
-      // Updating class and icon of requirement item if requirement matched or not
-      if (isValid) {
-          requirementItem.classList.add("valid");
-          requirementItem.firstElementChild.className = "fa-solid fa-check";
-      } else {
-          requirementItem.classList.remove("valid");
-          requirementItem.firstElementChild.className = "fa-solid fa-circle";
-      }
-  });
-});
-
-eyeIcon.addEventListener("click", () => {
-  passwordInput.type = passwordInput.type === "password" ? "text" : "password";
-  eyeIcon.className = `fa-solid fa-eye${passwordInput.type === "password" ? "" : "-slash"}`;
-});
