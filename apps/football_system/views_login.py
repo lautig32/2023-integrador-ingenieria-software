@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
@@ -26,6 +27,7 @@ def login_view(request):
             try:
                 user = Person.objects.get(email=username_or_email)
                 user = authenticate(request, username=user.username, password=password)
+
             except Person.DoesNotExist:
                 pass
         
@@ -124,6 +126,7 @@ def logout_view(request):
     
     return render(request, 'home.html')
 
+@login_required
 def profile(request):
     user = request.user
 
@@ -131,10 +134,40 @@ def profile(request):
 
     clubs = Club.objects.all()
 
-    context = {
-        'user': user,
-        'clubs': clubs,
-        'user_type_choices': user_type_choices,
-    }
+    try:
+        person = Person.objects.get(pk=user.pk)
+    except Person.DoesNotExist:
+        person = None
 
-    return render(request, 'profile.html', context)
+    clubs = Club.objects.all()
+
+    if person:    
+        if request.method == 'POST':
+            name = request.POST['name']
+            email = request.POST['email']
+            club = request.POST['club-slct']
+            user_type = request.POST['user-type-slct']
+
+            person = Person.objects.get(pk = user.pk)
+
+            if name:
+                person.first_name = name
+            if email:
+                person.email = email
+            if club:
+                person.club = Club.objects.get(pk=club)
+            if user_type:
+                person.type = user_type
+
+            person.save_base()
+
+        context = {
+            'user': person,
+            'clubs': clubs,
+            'user_type_choices': user_type_choices,
+        }
+
+        return render(request, 'profile.html', context)
+        
+    else:
+        return redirect('home')
