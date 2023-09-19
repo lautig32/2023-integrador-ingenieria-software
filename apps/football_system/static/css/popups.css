@@ -10,16 +10,10 @@ body {
     align-items: center;
     justify-content: center;
     padding: 0;
-}
-
-.popup-container{
-    padding: 30px 30px 0;
-    display: flex;
-    justify-content: end;  
-}
+} 
 
 .btn-container{
-    padding: 30px 30px 0;
+    padding: 10px 30px 0;
     display: flex;
     justify-content: end;
 }
@@ -108,7 +102,11 @@ input:focus + span{
 }
 
 .span{
-    transform: translateX(10px) translateY(-18px);
+    transform: translateX(-10px) translateY(-18px);
+}
+
+input[type="file"]{
+    text-transform: uppercase;
 }
 
 input[type="file"]::file-selector-button{
@@ -117,6 +115,10 @@ input[type="file"]::file-selector-button{
     top: 0;
     bottom: 0;
     width: 0%;
+    cursor: pointer;
+}
+
+input[type="file"]:hover{
     cursor: pointer;
 }
 
@@ -133,7 +135,7 @@ input[type="file"]::file-selector-button{
 
 .file-input{
     width: 100%;
-    padding: 7px;
+    padding: 7px;   
     background-color: transparent;
     border: 2px solid #609966;   
     outline: none;
@@ -144,12 +146,15 @@ input[type="file"]::file-selector-button{
     z-index: 1111;
     color: transparent;
 }
-
-.file-input-txt{
+.file-input:focus, .file-input:valid{
     color: black;
 }
 
-input[type="date"]{
+.input-txt{
+    color: black;
+}
+
+.date-input{
     width: 100%;
     padding: 10px;
     background-color: transparent;
@@ -160,10 +165,17 @@ input[type="date"]{
     font-size: 1em;
     transition: 0.1 ease;
     z-index: 1111;
+    color: transparent;
+    cursor: pointer;
+}
+.date-input:focus{
+    color:black;
+}
+.date-input:valid{
     color: black;
 }
 
-select{
+.select{
     width: 100%;
     padding: 10px;
     background-color: transparent;
@@ -174,12 +186,35 @@ select{
     font-size: 1em;
     transition: 0.1 ease;
     z-index: 1111;
-    color: #40513B;   
+    color: black;   
     text-transform: uppercase;
 }
 
+select:valid + span,
+select:focus + span{
+    color: #40513B;
+    background-color: #9DC08B;
+    font-size: 0.7em;
+    transform: translateX(10px) translateY(-18px);
+    z-index: 1111;
+}
+
+#match-data-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.clubs-container, .picture-upload-container, .goal-container{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin-bottom: 10px;
+}
+
 #close-btn{
-    background-color:9DC08B;
+    background-color: transparent;
     border: none;
     border-radius: 8px;
     color: #F5F5F5;
@@ -192,7 +227,7 @@ select{
     cursor: pointer;
 }
 
-#save-btn{
+#save-btn, #edit-btn{
     background-color: #609966;
     border: none;
     border-radius: 8px;
@@ -201,7 +236,8 @@ select{
     margin-left: 10px;
 }
 
-#save-btn:hover{
+#save-btn:hover, #edit-btn:hover{
     background-color: 40513B;
     cursor: pointer;
 }
+

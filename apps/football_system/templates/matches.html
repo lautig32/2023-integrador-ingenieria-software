@@ -9,71 +9,122 @@
     </head>
     <body>
         {% include 'navbar.html' %}
-        <div class="popup-container">
-            <div class="data-upload-container" id="match-upload-container">
-                <button class="btn" onclick="openPopupMatch()">Crear partido</button>
-                <div class="popup-window" id="popup-upload-match">
-                    <h1>Alta de partido</h1>
-                    <form method="post" class="form">
-                        {% csrf_token %}
-                        <div class="input-container">
-                            <select class="select" id="match-category-slct" required="required">
-                                <option selected="selected">Categoría</option>
-                                {% for id, name in FootballCategory %}
-                                    <option value="{{id}}">{{name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="input-container">
-                            <select class="select" id="team-one-name" required="required">
-                                <option>Equipo local</option>
-                                {% for id, category, name in Team %}
-                                    <option value="{{id}}">{{name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="input-container">
-                            <select class="select" id="team-two-name" required="required">
-                                <option>Equipo visitante</option>
-                                {% for id, category, name in Team %}
-                                    <option value="{{id}}">{{name}}</option>
-                                {% endfor %}
-                            </select>
-                        </div>
-                        <div class="input-container">
-                            <input type="date" class="date-input" id="match-date">
-                            <span for="match-date">Fecha del partido</span>
-                        </div>
-                        <div class="btn-container">
-                            <button class="btn" id="close-btn" onclick="closePopupMatch()">Cancelar</button>
-                            <button class="btn" type="submit" id="save-btn" onclick="closePopupMatch()">Guardar</button>
-                        </div>
-                    </form>
-                </div> 
-            </div>
+        {% if user.type == 'PR' %}
+        <div class="btn-container">
+            <button class="btn" onclick="openPopupMatch()">Crear partido</button>
         </div>
+        {% endif %}
         <div class="search-container">
-            <input type="search" class="search" id="matches_search" placeholder="Buscar partido por equipo...">
-            <button type="submit" class="btn" id="search-btn">Buscar</button>
+            <input type="search" class="search" id="matches-search" onkeyup="searchTable()" placeholder="Buscar partido por equipo...">
         </div>
         <div class="table-container">
             <table class="table" id="matches-tbl">
-                <tr>
+                <tr id="table-header">
                     <th>Fecha</th>
                     <th>Clubs</th>
                     <th>Resultado</th>
                     <th></th>
                 </tr>
-                {% for id in match_list %}
+                {% for match in matches %}
                 <tr>
                     <td>{{match.date}}</td>
-                    <td>{{match.local_team}} vs. {{match.visiting_team}}</td>
+                    <td>{{match.local_team}} vs {{match.visiting_team}}</td>
                     <td>{{match.local_team_result}} - {{match.visiting_team_result}}</td>
-                    <td><a href="#">Ver mas..</a></td>
+                    <td><a href="#" onclick="openPopupMatchData()">Ver mas..</a></td>
                 </tr>
                 {% endfor %}
             </table>
         </div>
+        <div class="popup-container">
+            <div class="data-upload-container" id="match-upload-container">
+                <div class="popup-window" id="popup-upload-match">
+                    <h1>Alta de partido</h1>
+                    <form method="post" class="form">
+                        {% csrf_token %}
+                        <div class="input-container">
+                            <select class="select" id="match-category-slct" name="match-category" required="required">
+                                <option selected="selected"></option>
+                                {% for category in categories %}
+                                    <option value="{{category.id}}">{{category.name}}</option>
+                                {% endfor %}
+                            </select>
+                            <span for="match-category-slct" class="select-spn">Categoría</span>
+                        </div>
+                        <div class="input-container">
+                            <select class="select" id="team-one-name" name="match-local-team" required="required">
+                                <option selected="selected"></option>
+                                {% for team in teams %}
+                                    <option value="{{team.id}}">{{team.name}}</option>
+                                {% endfor %}
+                            </select>
+                            <span for="team-one-name" class="select-spn">Equipo local</span>
+                        </div>
+                        <div class="input-container">
+                            <select class="select" id="team-two-name" name="match-visiting-team" required="required">
+                                <option selected="selected"></option>
+                                {% for team in teams %}
+                                    <option value="{{team.id}}">{{team.name}}</option>
+                                {% endfor %}
+                            </select>
+                            <span for="team-two-name" class="select-spn">Equipo visitante</span>
+                        </div>
+                        <div class="input-container">
+                            <input type="datetime-local" class="date-input" id="match-date" name="match-date" required="required">
+                            <span for="match-date" class="date-input-spn">Fecha del partido</span>
+                        </div>
+                        <div class="btn-container">
+                            <button class="btn" id="close-btn" onclick="closePopupMatch()">Cancelar</button>
+                            <button class="btn" type="submit" id="save-btn" name="form-match-create">Guardar</button>
+                        </div>
+                    </form>
+                </div> 
+            </div>
+        </div>
+        <div class="popup-container">
+            <div class="data-upload-container" id="match-data-container">
+                <div class="popup-window" id="popup-match-data">
+                    <h1>Partido</h1>
+                    <form method="post" class="form">
+                        <div class="clubs-container">
+                            <div class="input-container">
+                                <input type="text" class="text-input" id="local-team-name" name="local-team-name" value="{{ match.local_team }}" disabled>
+                                <span for="local-team-name">Equipo local</span>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" class="text-input" id="visiting-team-name" name="visiting-team-name" value="{{ match.visiting_team }}" disabled>
+                                <span for="visiting-team-name">Equipo visitante</span>
+                            </div>
+                        </div>
+                        <div class="picture-upload-container">
+                            <div class="input-container">
+                                <input type="file" class="file-input" id="local-team-picture" name="local-team-picture" accept="Image/*">
+                                <span for="local-team-picture">Subir foto de equipo</span>
+                            </div>
+                            <div class="input-container">
+                                <input type="file" class="file-input" id="visiting-team-picture" name="visiting-team-picture" accept="Image/*">
+                                <span for="visiting-team-picture">Subir foto de equipo</span>
+                            </div>
+                        </div>
+                        <div class="goal-container">
+                            <div class="input-container">
+                                <input type="text" class="text-input" id="local-team-goals" name="local-team-goals" value="{{ match.local_team_goals }}" disabled="disabled">
+                                <span for="local-team-goals">Goles de equipo local</span>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" class="text-input" id="visiting-team-goals" name="visiting-team-goals" value="{{ match.visiting_team_goals }}" disabled="disabled">
+                                <span for="visiting-team-goals">Goles de equipo visitante</span>
+                            </div>
+                        </div>
+                        <div class="btn-container">
+                            <button class="btn" id="close-btn" onclick="closePopupMatchData()">Cancelar</button>
+                            <button class="btn" id="edit-btn">Editar</button>
+                            <button class="btn" type="submit" id="save-btn" style="display: none;">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
         <script src="../static/js/popups.js"></script>
+        <script src="../static/js/tables.js"></script>
     </body>
 </html>

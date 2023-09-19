@@ -12,22 +12,33 @@ body {
     padding: 0;
 }
 
+.tables-container{
+    display: flex;
+    width: 100%;
+}
+
 .table-container{
-    padding-top: 25px;
+    padding-top: 20px;
     display: flex;
     justify-content: center;
 }
 
 table{
     table-layout: fixed;
-    width: 80%;
-    border-collapse: collapse;
+    width: 90%;
+    border-collapse:collapse;
     background-color: #EDF1D6;
+    margin: 0 auto;
+    overflow-y: auto;
+    max-height: 200px;
 }
-th {
+tr th {
+    text-align: center;
     background-color: #9DC08B;
+    height: 25px;
 }
-td{
-    padding: 10px;
+tr td{
+    text-align: center;
+    height: 25px;
 }
       
