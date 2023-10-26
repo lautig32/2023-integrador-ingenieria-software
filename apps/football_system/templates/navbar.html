@@ -9,7 +9,9 @@
       <ul class="navbar">
             <li><a href="{% url 'home' %}">Inicio</a></li>  
             <li><a href="{% url 'matches' %}">Partidos</a></li>
-            <li><a href="{% url 'clubs' %}">Clubs</a></li>
+            {% if user.type == 'TD' %}
+              <li><a href="{% url 'clubs' %}">Club</a></li>
+            {% endif %}
             <li>
                 {% if user.is_authenticated %}
                 <div class="dropdown">  

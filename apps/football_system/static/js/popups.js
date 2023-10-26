@@ -24,13 +24,52 @@ function closePopupMatch(){
 }
 
 
+let popupMatchData = document.getElementById("popup-match-data");
+function openPopupMatchData(){
+    popupMatchData.classList.add("open-popup");
+}
+function closePopupMatchData(){
+    popupMatchData.classList.remove("open-popup");
+}
+
+let popupTeamData = document.get ("popup-team-data");
+function openPopupTeamData(){
+    popupTeamData.classList.add("open-popup");
+}
+function closePopupTeamData(){
+    popupTeamData.classList.remove("open-popup");
+}
+
+let popupPlayerData = document.get ("popup-player-data");
+function openPopupPlayerData(){
+    popupPlayerData.classList.add("open-popup");
+}
+function closePopupPlayerData(){
+    popupPlayerData.classList.remove("open-popup");
+}
+
 function changeFileInputColor(){
     let fileInput = document.getElementsByClassName("file-input");
+    let span = document.getElementsByClassName("file-input-spn");
     for (let i = 0; i < fileInput.length; i++) {
-        fileInput[i].classList.add("file-input-txt");
-        if(fileInput.classList.contains("file-input-txt")){
-            fileInput.classList.add("span");
-        }
+        fileInput[i].classList.add("input-txt");
+        span.classList.add("span");
     }
 }
 
+//mostrar equipo dependiendo de categoria
+const matchCategorySelect = document.getElementById('match-category-slct');
+const teamOneSelect = document.getElementById('team-one-name');
+matchCategorySelect.addEventListener('change', function () {
+    const selectedCategory = matchCategorySelect.value;
+    const filteredTeams = teams.filter(team => team.category === selectedCategory);
+    while (teamOneSelect.options.length > 0) {
+        teamOneSelect.remove(0);
+    }
+    filteredTeams.forEach(team => {
+        const option = document.createElement('option');
+        option.value = team.id;
+        option.text = team.name;
+        teamOneSelect.appendChild(option);
+    });
+});

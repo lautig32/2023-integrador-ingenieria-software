@@ -41,7 +41,7 @@ input{
   width: 90%;
   padding: 10px;
   margin: 10px;
-  border: none;
+  border: 2px solid #9DC08B;
   border-radius: 15px;
   box-sizing: border-box; 
   background: white;
@@ -52,7 +52,7 @@ select{
   width: 90%;
   padding: 10px;
   margin: 10px;
-  border: none;
+  border: 2px solid #9DC08B;
   border-radius: 15px;
   box-sizing: border-box; 
   background: white;

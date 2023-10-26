@@ -4,99 +4,137 @@
         <title>Partidos</title>
         <link rel="stylesheet" type="text/css" href="../static/css/index.css">
         <link rel="stylesheet" type="text/css" href="../static/css/popups.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/clubs.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/tables.css">
     </head>
     <body>
         {% include 'navbar.html' %}
-    <! hacer  if para que los botones sean visibles para un cierto tipo de usuario>
-            <div class="popup-container">
-                <div class="data-upload-container" id="player-upload-container">
-                    <button class="btn" onclick="openPopupPlayer()">Cargar jugador</button>
-                    <div class="popup-window" id="popup-upload-player">
-                        <h1>Alta de jugador</h1>
-                        <form method="post" class="form">
-                            {% csrf_token %}
-                            <div class="input-container">
-                                <input type="text" class="text-input" id="player-name" required="required">
-                                <span>Nombre</span>
-                            </div>
-                            <div class="input-container">
-                                <input type="text" class="text-input" id="player-surname" required="required">
-                                <span>Apellido</span>
-                            </div>
-                            <div class="input-container">
-                                <input type="date" class="date-input" id="player-birthday" required="required"> 
-                                <span>Edad</span>
-                            </div>
-                            <div class="input-container">
-                                <select class="select" id="match-category-slct" required="required">
-                                    <option selected="selected">Categoría</option>
-                                    {% for id, name in FootballCategory %}
-                                        <option value="{{id}}">{{name}}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-                            <div class="input-container">
-                                <input type="file" class="file-input" id="player-picture" accept="Image/*" onclick="changeFileInputColor()" required="required">
-                                <span for="player-picture" class="file-input-spn">Cargar foto</span>
-                            </div>
-                            <div class="btn-container">
-                                <button class="btn" id="close-btn" onclick="closePopupPlayer()">Cancelar</button>
-                                <button class="btn" type="submit" id="save-btn" onclick="closePopupPlayer()">Guardar</button>
-                            </div>
-                        </form>
-                    </div> 
-                </div>
+        <div class="btn-container">
+            <button class="btn" onclick="openPopupTeam()">Cargar equipo</button>
+            <button class="btn" onclick="openPopupPlayer()">Cargar jugador</button>
+        </div>
+        <div class="clubs-container">
+            <div class="user-club">
+                <ul>
+                    <li><img src="https://images.vexels.com/media/users/3/158408/isolated/preview/c605be7e04b1572a7af6fe3ee646510b-ilustracion-de-pelota-de-futbol-pentagono.png" alt=""></li>
+                    <li><h3>{{user.club.name}}</h3></li>
+                </ul>
             </div>
-            <div class="popup-container">
-                <div class="data-upload-container" id="team-upload-container">
-                    <button class="btn" onclick="openPopupTeam()">Cargar equipo</button>
-                    <div class="popup-window" id="popup-upload-team">
-                        <h1>Alta de equipo</h1>
-                        <form method="post" class="form">
-                            {% csrf_token %}
-                            <div class="input-container">
-                                <input type="text" class="text-input" id="team-name" required="required">
-                                <span>Nombre</span>
-                            </div>
-                            <select class="select" id="match-category-slct" required="required">
-                                <option selected="selected">Categoría</option>
-                                {% for id, name in FootballCategory %}
-                                    <option value="{{id}}">{{name}}</option>
+        </div>
+        <div class="tables-container">
+            <div class="table-container">
+                <table class="table" id="teams-tbl"> 
+                    <tr>
+                        <th>Equipo</th>
+                        <th>Categoría</th>
+                        <th> </th>
+                    </tr>
+                    {% for team in teams %}
+                    <tr>
+                        <td>{{team.name}}</td>
+                        <td>{{team.category}}</td>
+                        <td><a href="#" onclick="openPopupTeamData()">Ver mas..</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="table-container">
+                <table class="table" id="players-tbl">
+                    <tr>
+                        <th>Jugador</th>
+                        <th>Equipo</th>
+                        <th> </th>
+                    </tr>
+                    {% for player in players %}
+                    <tr>
+                        <td>{{player.name}} {{player.lastname}}</td>
+                        <td>{{player.team}}</td>
+                        <td><a href="#" onclick="openPopupPlayerData()">Ver mas..</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+        <div class="popup-container">
+            <div class="data-upload-container" id="player-upload-container">
+                <div class="popup-window" id="popup-upload-player">
+                    <h1>Alta de jugador</h1>
+                    <form method="POST" class="form">
+                        {% csrf_token %}
+                        <div class="input-container">
+                            <input type="text" class="text-input" id="player-name" name="player-name" required="required">
+                            <span for="player-name" clas="text-input-spn">Nombre</span>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" class="text-input" id="player-surname" name="player-surname" required="required">
+                            <span for="player-surname" class="text-input-span">Apellido</span>
+                        </div>
+                        <div class="input-container">
+                            <input type="date" class="date-input" id="player-birthday" name="player-birthday" required="required"> 
+                            <span for="player-birthday" class="date-input-spn">Fecha de nacimiento</span>
+                        </div>
+                        <div class="input-container">
+                            <select class="select" id="user-category-slct" name="player-team" required="required">
+                                <option selected="selected"></option>
+                                {% for team in teams %}
+                                    <option value="{{team.id}}">{{team.name}}</option>
                                 {% endfor %}
                             </select>
-                            <div class="input-container">
-                                <input type="file" class="file-input" id="team-logo" accept="Image/*" onclick="changeFileInputColor()">
-                                <span for="team-logo" class="file-input-spn">Logo</span>
-                            </div>
-                            <div class="btn-container">
-                                <button class="btn" id="close-btn" onclick="closePopupTeam()">Cancelar</button>
-                                <button class="btn" type="submit" id="save-btn" onclick="closePopupTeam()">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>  
-            <div class="clubs-container">
-                <div class="club-display">
-                    {% if user.club %}
-                    <h1>Mi club</h1>
-                    <ul>
-                        <li>{{club.logo}}</li>
-                        <li>{{club.name}}</li>
-                    </ul>
-                {% endif %}    
-                </div>
-                <div class="club-display">
-                    <h1>Otros clubs</h1>
-                    <ul>
-                    {% for id in club %}
-                        <li>{{club.logo}}</li>
-                        <li>{{club.name}}</li>
-                    {% endfor %}
-                    </ul>
+                            <span for="user-category-slct" class="select-spn">Equipo</span>
+                        </div>
+                        <div class="input-container">
+                            <input type="file" class="file-input" id="player-picture" name="player-picture" accept="Image/*" required="required">
+                            <span for="player-picture" class="file-input-spn">Cargar foto</span>
+                        </div>
+                        <div class="btn-container">
+                            <button class="btn" id="close-btn" onclick="closePopupPlayer()">Cancelar</button>
+                            <button class="btn" type="submit" id="save-btn" name="form-player-create">Guardar</button>
+                        </div>
+                    </form>
+                </div> 
+            </div>
+        </div>
+        <div class="popup-container">
+            <div class="data-upload-container" id="team-upload-container">
+                <div class="popup-window" id="popup-upload-team">
+                    <h1>Alta de equipo</h1>
+                    <form method="POST" class="form">
+                        {% csrf_token %}
+                        <div class="input-container">
+                            <input type="text" class="text-input" id="team-name" name="team-name" required="required">
+                            <span for="team-name" class="text-input-spn">Nombre</span>
+                        </div>
+                        <div class="input-container">
+                            <select class="select" id="team-category-slct" name="team-category" required="required">
+                                <option selected="selected"></option>
+                                {% for category in categories %}
+                                    <option value="{{category.id}}">{{category.name}}</option>
+                                {% endfor %}
+                            </select>
+                            <span for="team-category-slct" class="select-spn">Categoría</span>
+                        </div> 
+                        <div class="input-container">
+                            <input type="file" class="file-input" id="team-logo" name="team-logo" accept="Image/*" required="unrequired">
+                            <span for="team-logo" class="file-input-spn">Cargar logo</span>
+                        </div>   
+                        <div class="btn-container">
+                            <button class="btn" id="close-btn" onclick="closePopupTeam()">Cancelar</button>
+                            <button class="btn" type="submit" id="save-btn" name="form-team-create">Guardar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div> 
+        <div class="popup-container">
+            <div class="popup-team-data" id="popup-team-data">
+                
+            </div>
+        </div>
+        <div class="popup-container">
+            <div class="popup-player-data" id="popup-player-data">
 
+            </div>
+        </div>
         <script src="../static/js/popups.js"></script>
     </body>
 </html>

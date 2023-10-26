@@ -12,22 +12,43 @@ body {
     padding: 0;
 }
 
-.table-container{
-    padding-top: 25px;
+.tables-container{
     display: flex;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
 }
 
 table{
     table-layout: fixed;
-    width: 80%;
-    border-collapse: collapse;
+    width: 90%;
+    border-collapse:collapse;
     background-color: #EDF1D6;
+    margin: 0 auto;
+    max-height: 100px;
 }
-th {
+table th{
+    text-align: center;
     background-color: #9DC08B;
+    height: 30px;
 }
-td{
-    padding: 10px;
+table td{
+    text-align: center;
+    height: 40px;
+    border-top: 1px solid lightgray;
 }
       
+.fiter-container{
+    display: inline-flex;
+    padding: 0px 100px;
+}
+
+select{
+    background-color: transparent;
+    border: none;
+    height: 30px;
+    margin-top: 14px;
+}
+select:hover{
+    text-decoration: underline;
+}

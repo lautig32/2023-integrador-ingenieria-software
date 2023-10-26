@@ -143,10 +143,10 @@ def profile(request):
 
     if person:    
         if request.method == 'POST':
-            name = request.POST['name']
-            email = request.POST['email']
-            club = request.POST['club-slct']
-            user_type = request.POST['user-type-slct']
+            name = request.POST['user-name']
+            email = request.POST['user-email']
+            club = request.POST['user-club']
+            user_type = request.POST['user-type']
 
             person = Person.objects.get(pk = user.pk)
 

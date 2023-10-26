@@ -28,5 +28,5 @@ input[type="search"]{
 }
 
 input[type="search"]:valid,input[type="search"]:focus{
-    color: black;
+    color: #40513B;
 }
