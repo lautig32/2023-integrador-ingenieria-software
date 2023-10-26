@@ -32,6 +32,21 @@ function closePopupMatchData(){
     popupMatchData.classList.remove("open-popup");
 }
 
+let popupTeamData = document.get ("popup-team-data");
+function openPopupTeamData(){
+    popupTeamData.classList.add("open-popup");
+}
+function closePopupTeamData(){
+    popupTeamData.classList.remove("open-popup");
+}
+
+let popupPlayerData = document.get ("popup-player-data");
+function openPopupPlayerData(){
+    popupPlayerData.classList.add("open-popup");
+}
+function closePopupPlayerData(){
+    popupPlayerData.classList.remove("open-popup");
+}
 
 function changeFileInputColor(){
     let fileInput = document.getElementsByClassName("file-input");

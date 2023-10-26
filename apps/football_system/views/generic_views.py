@@ -120,9 +120,10 @@ def views_clubs(request):
 
             context = {
                 'user': person,
-                'clubs': Club.objects.get(pk=person.club.pk),
+                'clubs': Club.objects.filter(pk=person.club),
                 'teams': Team.objects.filter(club=person.club),
                 'players': Player.objects.filter(team__club=person.club),
+                'categories': FootballCategory.objects.all(),
             }
             print(context)
             return render(request, 'clubs.html', context)

@@ -14,13 +14,9 @@ body {
 
 .tables-container{
     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     width: 100%;
-}
-
-.table-container{
-    padding-top: 20px;
-    display: flex;
-    justify-content: center;
 }
 
 table{
@@ -29,16 +25,30 @@ table{
     border-collapse:collapse;
     background-color: #EDF1D6;
     margin: 0 auto;
-    overflow-y: auto;
-    max-height: 200px;
+    max-height: 100px;
 }
-tr th {
+table th{
     text-align: center;
     background-color: #9DC08B;
-    height: 25px;
+    height: 30px;
 }
-tr td{
+table td{
     text-align: center;
-    height: 25px;
+    height: 40px;
+    border-top: 1px solid lightgray;
 }
       
+.fiter-container{
+    display: inline-flex;
+    padding: 0px 100px;
+}
+
+select{
+    background-color: transparent;
+    border: none;
+    height: 30px;
+    margin-top: 14px;
+}
+select:hover{
+    text-decoration: underline;
+}

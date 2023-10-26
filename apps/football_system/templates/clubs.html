@@ -10,8 +10,8 @@
     <body>
         {% include 'navbar.html' %}
         <div class="btn-container">
-            <button class="btn" onclick="openPopupPlayer()">Cargar jugador</button>
             <button class="btn" onclick="openPopupTeam()">Cargar equipo</button>
+            <button class="btn" onclick="openPopupPlayer()">Cargar jugador</button>
         </div>
         <div class="clubs-container">
             <div class="user-club">
@@ -47,7 +47,7 @@
                     </tr>
                     {% for player in players %}
                     <tr>
-                        <td>{{player.name}}</td>
+                        <td>{{player.name}} {{player.lastname}}</td>
                         <td>{{player.team}}</td>
                         <td><a href="#" onclick="openPopupPlayerData()">Ver mas..</a></td>
                     </tr>
@@ -125,6 +125,16 @@
                 </div>
             </div>
         </div> 
+        <div class="popup-container">
+            <div class="popup-team-data" id="popup-team-data">
+                
+            </div>
+        </div>
+        <div class="popup-container">
+            <div class="popup-player-data" id="popup-player-data">
+
+            </div>
+        </div>
         <script src="../static/js/popups.js"></script>
     </body>
 </html>
