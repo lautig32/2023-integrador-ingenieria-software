@@ -11,8 +11,15 @@ from .models import *
 from .forms import *
 
 def home(request):
+    now = timezone.now()
     
-    return render(request, 'home.html')
+    next_match = Match.objects.filter(date__gt=now).order_by('date').first()
+    
+    context = {
+        'next_match': next_match,
+    }
+    
+    return render(request, 'home.html', context)
 
 def login_view(request):
     if request.method == 'POST':

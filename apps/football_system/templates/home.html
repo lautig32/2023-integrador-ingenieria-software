@@ -10,13 +10,17 @@
         {% include 'navbar.html' %}
         <div class="background">
             <div class="banner">
-                <div class="banner-info">
-                    <h2>PROXIMO PARTIDO</h2>
-                    <h4>dd/mm - 00:00hs</h4>
-                </div>
-                <div class="banner-teams">
-                    <h1>club 1 vs club 2</h1>
-                </div>
+                {% if next_match %}
+                    <div class="banner-info">
+                        <h2>Próximo partido</h2>
+                        <h4>{{ next_match.date }}</h4>
+                    </div>
+                    <div class="banner-teams">
+                        <h1>{{ next_match.local_team }} vs {{ next_match.visiting_team }}</h1>
+                    </div>
+                {% else %}
+                    <p>No hay próximos partidos programados.</p>
+                {% endif %}
             </div>
         </div>
     </body>
