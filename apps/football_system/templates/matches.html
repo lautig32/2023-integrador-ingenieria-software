@@ -38,7 +38,7 @@
                     <td data-date="{{ match.date }}">{{ match.date }}</td>
                     <td>{{match.local_team}} vs {{match.visiting_team}}</td>
                     <td>{{match.local_team_result}} - {{match.visiting_team_result}}</td>
-                    <td><a href="#" onclick= openPopupMatchData({{match.id}})>Ver más...</a></td>
+                    <td><a href="#" onclick="openPopupMatchData({{match.id}})">Ver más...</a></td>
                 </tr>
                 {% endfor %}
             </table>
@@ -93,17 +93,16 @@
                 <div class="popup-window" id="popup-match-data">
                     <h1>Partido</h1>
                     <form method="post" class="form" onchange="updatePopup()">
-                        <p class="prueba">prueba</p>
                         {% csrf_token %}
                         {% for match in matches %}
                             {% if match.id == currentMatchID %}
                                 <div class="match-general-data">
                                     <div class="input-container">
-                                        <input type="text" class="text-input" id="match-category-input" name="match-category" value="{{match.category}}">
+                                        <input type="text" class="text-input" id="match-category-input" name="match-category" value="">
                                         <span for="match-category-input" class="spn">Categoría</span>
                                     </div>
                                     <div class="input-container">
-                                        <input type="datetime-local" class="date-input" id="match-date" name="match-date" value="{{match.date}}">
+                                        <input type="datetime-local" class="date-input" id="match-date" name="match-date" value="">
                                         <span for="match-date" class="date-input-spn">Fecha del partido</span>
                                     </div>
                                 </div>
@@ -113,42 +112,44 @@
                             <div class="local-team-container">
                                 <h3>Equipo local</h3>
                                 <div class="input-container">
-                                    <input type="text" class="text-input" id="local-team-name" name="local-team-name" value="{{ match.local_team }}" disabled>
-                                    <span for="local-team-name" class="text-input-span">Nombre del equipo</span>
+                                    <input type="text" class="text-input" id="local-team-name" name="local-team-name" value="" disabled>
+                                    <span for="local-team-name">Nombre del equipo</span>
                                 </div>
                                 {% if user.type == 'PR' %}
                                     <div class="input-container">
                                         <input type="file" class="file-input" id="local-team-picture" name="local-team-picture" accept="Image/*" disabled>
-                                        <span for="local-team-picture" class="text-input-span">Foto de equipo</span>
+                                        <span for="local-team-picture">Foto de equipo</span>
+                                        <img id="local-team-picture-preview" src="" alt="Vista previa de la imagen" style="display: none; max-width: 200px; max-height: 200px;">
                                     </div>
                                 {% endif %}
                                 <div class="input-container">
-                                    <input type="text" class="text-input" id="local-team-goals" name="local-team-goals" value="{{ match.local_team_goals }}" disabled>
-                                    <span for="local-team-goals" class="text-input-span">Goles</span>
+                                    <input type="text" class="text-input" id="local-team-goals" name="local-team-goals" value="" disabled>
+                                    <span for="local-team-goals">Goles</span>
                                 </div>
                             </div>
                             <div class="visiting-team-container">
                                 <h3>Equipo visitante</h3>
                                 <div class="input-container">
-                                    <input type="text" class="text-input" id="visiting-team-name" name="visiting-team-name" value="{{ match.visiting_team }}" disabled>
-                                    <span for="visiting-team-name" class="text-input-span">Nombre del equipo</span>
+                                    <input type="text" class="text-input" id="visiting-team-name" name="visiting-team-name" value="" disabled>
+                                    <span for="visiting-team-name">Nombre del equipo</span>
                                 </div>
                                 {% if user.type == 'PR' %}
                                     <div class="input-container">
                                         <input type="file" class="file-input" id="visiting-team-picture" name="visiting-team-picture" accept="Image/*" disabled>
-                                        <span for="visiting-team-picture" class="text-input-span">Foto de equipo</span>
+                                        <span for="visiting-team-picture">Foto de equipo</span>
+                                        <img id="visiting-team-picture-preview" src="" alt="Vista previa de la imagen" style="display: none; max-width: 200px; max-height: 200px;">
                                     </div>
                                 {% endif %}
                                 <div class="input-container">
-                                    <input type="text" class="text-input" id="visiting-team-goals" name="visiting-team-goals" value="{{ match.visiting_team_goals }}" disabled>
-                                    <span for="visiting-team-goals" class="text-input-span">Goles</span>
+                                    <input type="text" class="text-input" id="visiting-team-goals" name="visiting-team-goals" value="" disabled>
+                                    <span for="visiting-team-goals">Goles</span>
                                 </div>
                             </div>
                         </div>
                         <div class="btn-container">
-                            <button class="btn" id="close-btn" onclick="closePopupMatchData()">Cerrar</button>
+                            <button class="btn" type="button" id="close-btn" onclick="closePopupMatchData()">Cerrar</button>
                             {% if user.type == 'PR' %}
-                            <button class="btn" id="edit-btn" onclick="enableEdition()">Editar</button>
+                            <button class="btn" type="button" id="edit-btn" onclick="enableEdition()">Editar</button>
                             <button class="btn" type="submit" id="save-btn" style="display: none;">Guardar</button>
                             {% endif %}
                         </div>    
@@ -156,6 +157,7 @@
                 </div>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../static/js/popups.js"></script>
         <script src="../static/js/tables.js"></script>
     </body>

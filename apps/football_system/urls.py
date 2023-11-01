@@ -22,6 +22,8 @@ urlpatterns = [
     path('matches/', generic_views.views_matches, name='matches'),
     path('clubs/', generic_views.views_clubs, name='clubs'),
 
+    path('get_match_info/<int:match_id>/', views_login.get_match_info, name='get_match_info'),
+
     # path('club/', views_list.ClubListView.as_view(), name='clubs'),
     # path('club/create/', views_create.ClubCreateView.as_view(), name='club_create'),
     # path('club/<int:pk>/update/', views_update.ClubUpdateView.as_view(), name='club_update'),
