@@ -1,13 +1,15 @@
-<!DOCTYPE html>
 {% load static %}
-<html>
-    {% include 'navbar.html' %}
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Título de la Página{% endblock %}</title>
         <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+        <link rel="stylesheet" type="text/css" href="../static/css/navbar.css">
+        <script src="../static/js/navbar.js"></script>
     </head>
     <body>
+        {% include 'navbar.html' %}
         <div id="content">
             {% block content %}
 

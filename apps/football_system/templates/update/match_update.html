@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block title %}Editar Partido{% endblock %}
 
 {% block content %}
@@ -16,7 +15,6 @@
         </div>
 
         <div>
-            <!-- Previsualización de la Imagen del Equipo Visitante -->
             {% if form.instance.visiting_team_image %}
             <h2>Previsualización de la Imagen del Equipo Visitante</h2>
             <img src="{{ form.instance.visiting_team_image.url }}" alt="{{ form.instance.visiting_team.name }}">
