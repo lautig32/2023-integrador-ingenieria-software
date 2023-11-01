@@ -1,27 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/matches.css' %}">
+{% endblock %}
+
 {% block title %}Editar Partido{% endblock %}
 
 {% block content %}
-    <h1>Editar Partido</h1>
+<div class="body-container">
+    <h2 class="title">Editar Partido</h2>
     <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
+        {% csrf_token %}    
         {{ form.as_p }}
-        
-        <div>
-            {% if form.instance.local_team_image %}
-            <h2>Previsualización de la Imagen del Equipo Local</h2>
-            <img src="{{ form.instance.local_team_image.url }}" alt="{{ form.instance.local_team.name }}">
-            {% endif %}
-        </div>
 
-        <div>
-            {% if form.instance.visiting_team_image %}
-            <h2>Previsualización de la Imagen del Equipo Visitante</h2>
-            <img src="{{ form.instance.visiting_team_image.url }}" alt="{{ form.instance.visiting_team.name }}">
-            {% endif %}
+        <div class="teams-container">
+            <div>
+                {% if form.instance.local_team_image %}
+                <h2>Previsualización de la Imagen del Equipo Local</h2>
+                <img src="{{ form.instance.local_team_image.url }}" alt="{{ form.instance.local_team.name }}">
+                {% endif %}
+            </div>
+
+            <div>
+                {% if form.instance.visiting_team_image %}
+                <h2>Previsualización de la Imagen del Equipo Visitante</h2>
+                <img src="{{ form.instance.visiting_team_image.url }}" alt="{{ form.instance.visiting_team.name }}">
+                {% endif %}
+            </div>
         </div>
-        
-        <button type="submit">Guardar Cambios</button>
+        <div class="btn-container">
+            <a href="{% url 'match_list' %}" class="link-btn">Volver a la lista de partidos</a>
+            <button type="submit" class="btn">Guardar cambios</button>
+        </div>
     </form>
-    <a href="{% url 'match_list' %}">Volver a la lista de partidos</a>
+</div>
 {% endblock %}

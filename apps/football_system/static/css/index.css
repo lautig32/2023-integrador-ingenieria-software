@@ -5,5 +5,91 @@ body{
     padding: 0;
 }
 
+.title{
+    margin-top: 30px;
+    margin-left: 30px;
+}
+
+.body-container{
+    margin: 20px 20px;
+}
+
+p{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: 20px 50px;
+}
+
+label{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    margin: 5px;
+}
+
+select{
+    width: 80%;
+    height: 35px;
+    padding: 7px;  
+    border: 3px solid #609966;
+    border-radius: 15px;
+    margin-left: 15px;
+}
+
+input{
+    width: 80%;
+    height: 35px;
+    padding: 7px;  
+    border: 3px solid #609966;
+    border-radius: 15px;
+    background-color: white;
+    margin-left: 15px;
+}
+input[type="file"]::file-selector-button{
+    left: 0;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    width: 0%;
+    cursor: pointer;
+}
+input[type="file"]:hover{
+    cursor: pointer;
+}
 
 
+.btn-container{
+    padding: 0 30px 10px;
+    display: flex;
+    justify-content: end;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.btn{
+    background-color: #609966;
+    border: none;
+    border-radius: 15px;
+    color: #F5F5F5;
+    padding: 10px 20px ;
+    text-decoration: none;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-color: #40513B;
+}  
+
+.link-btn{
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    color: #40513B;
+    padding: 8px;
+    margin-left: 10px;
+    text-decoration: none;
+}
+
+.link-btn:hover{
+    color: #609966;
+}

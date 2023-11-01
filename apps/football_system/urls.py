@@ -19,22 +19,22 @@ urlpatterns = [
     path('check_username/', views_login.check_username, name='check_username'),
     path('profile/', views_login.profile, name='profile'),
 
-    path('clubs/', generic_views.views_clubs, name='clubs'),
+    path('club/', generic_views.views_clubs, name='clubs'),
 
-    path('team/', views_list.TeamListView.as_view(), name='team_list'),
-    path('team/create/', views_create.TeamCreateView.as_view(), name='team_create'),
-    path('team/<int:pk>/update/', views_update.TeamUpdateView.as_view(), name='team_update'),
-    path('team/<int:pk>/delete/', views_delete.TeamDeleteView.as_view(), name='team_delete'),
+    path('teams/', views_list.TeamListView.as_view(), name='team_list'),
+    path('teams/create/', views_create.TeamCreateView.as_view(), name='team_create'),
+    path('teams/<int:pk>/update/', views_update.TeamUpdateView.as_view(), name='team_update'),
+    path('teams/<int:pk>/delete/', views_delete.TeamDeleteView.as_view(), name='team_delete'),
 
-    path('match/', views_list.MatchListView.as_view(), name='match_list'),
-    path('match/create/', views_create.MatchCreateView.as_view(), name='match_create'),
-    path('match/<int:pk>/update/', views_update.MatchUpdateView.as_view(), name='match_update'),
-    path('match/<int:pk>/delete/', views_delete.MatchDeleteView.as_view(), name='match_delete'),
+    path('matches/', views_list.MatchListView.as_view(), name='match_list'),
+    path('matches/create/', views_create.MatchCreateView.as_view(), name='match_create'),
+    path('matches/<int:pk>/update/', views_update.MatchUpdateView.as_view(), name='match_update'),
+    path('matches/<int:pk>/delete/', views_delete.MatchDeleteView.as_view(), name='match_delete'),
 
-    path('player/', views_list.PlayerListView.as_view(), name='player_list'),
-    path('player/create/', views_create.PlayerCreateView.as_view(), name='player_create'),
-    path('player/<int:pk>/update/', views_update.PlayerUpdateView.as_view(), name='player_update'),
-    path('player/<int:pk>/delete/', views_delete.PlayerDeleteView.as_view(), name='player_delete'),
+    path('players/', views_list.PlayerListView.as_view(), name='player_list'),
+    path('players/create/', views_create.PlayerCreateView.as_view(), name='player_create'),
+    path('players/<int:pk>/update/', views_update.PlayerUpdateView.as_view(), name='player_update'),
+    path('players/<int:pk>/delete/', views_delete.PlayerDeleteView.as_view(), name='player_delete'),
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

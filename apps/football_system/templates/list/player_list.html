@@ -1,13 +1,41 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Lista de Jugadores{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/matches.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/tables.css' %}">
+<script src="{% static 'js/tables.js' %}"></script>
+{% endblock %}
+
+{% block title %}Jugadores{% endblock %}
 
 {% block content %}
+<div class="body-container">
+    <h2 class="title">Jugadores</h2>
+    <div class="btn-container">
+        <a href="{% url 'player_create' %}" class="btn">Crear Jugador</a>
+    </div>
     <ul>
-        {% for player in players %}
-            <li>{{ player }}</li>
-        {% endfor %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Equipo</th> 
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.name }}</td>
+                        <td>{{ player.team }}</td>
+                        <td>
+                            <a href="{% url 'player_update' player.pk %}">Editar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </ul>
-    <a href="{% url 'player_create' %}">Crear Jugador</a>
+</div>
 {% endblock %}

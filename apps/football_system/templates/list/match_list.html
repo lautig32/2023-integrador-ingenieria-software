@@ -1,13 +1,42 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Lista de Partidos{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/matches.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/tables.css' %}">
+<script src="{% static 'js/tables.js' %}"></script>
+{% endblock %}
+
+{% block title %}Partidos{% endblock %}
 
 {% block content %}
-    <ul>
-        {% for match in matches %}
-            <li>{{ match }}</li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'match_create' %}">Crear Partido</a>
+<div class="body-container">
+    <h2 class="title">Partidos</h2>
+    {% if user.type == 'PR' %}
+    <div class="btn-container">
+        <a href="{% url 'match_create' %}" class="btn">Crear Partido</a>
+    </div>
+    {% endif %}
+    <div class="search-container">
+        <input tYpe="search" class="search" id="matches-search" onkeyup="searchTable()" placeholder="Buscar partido por equipo...">
+    </div>
+    <div class="table-container">
+        <table class="table" id="matches-tbl">
+            <tr id="table-header">
+                <th>Fecha</th>
+                <th>Equipos</th>
+                <th>Resultado</th>
+                <th></th>
+            </tr>
+            {% for match in matches %}  
+            <tr class="match-row" data-id="{{ match.id }}">
+                <td data-date="{{ match.date }}">{{ match.date }}</td>
+                <td>{{match.local_team}} vs {{match.visiting_team}}</td>
+                <td>{{match.local_team_result}} - {{match.visiting_team_result}}</td>
+                <td><a href="{% url 'match_update' match.pk%}">Ver más...</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
 {% endblock %}

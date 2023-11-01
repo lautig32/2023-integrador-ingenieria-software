@@ -1,7 +1,7 @@
 from django.views.generic.edit import DeleteView
 from django.urls import reverse_lazy
 from ..models import Club, Person, FootballCategory, Team, Match, Player, PlayerSuspension
-from ..forms import ClubForm, PersonForm, FootballCategoryForm, TeamForm, MatchForm, PlayerForm, PlayerSuspensionForm
+from ..forms import TeamForm, MatchForm, PlayerForm
 
 class ClubDeleteView(DeleteView):
     model = Club

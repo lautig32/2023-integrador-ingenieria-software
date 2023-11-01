@@ -1,15 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Lista de Equipos{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/matches.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/tables.css' %}">
+<script src="{% static 'js/tables.js' %}"></script>
+{% endblock %}
+
+{% block title %}Equipos{% endblock %}
 
 {% block content %}
-    <h1>Lista de Equipos</h1>
+<div class="body-container">
+    <h2 class="title">Equipos</h2>
+    <div class="btn-container">
+        <a href="{% url 'team_create' %}" class="btn">Crear Equipo</a>
+    </div>
     <table>
         <thead>
             <tr>
                 <th>Nombre</th>
-                <th>Categoría</th>
+                <th>Categoría</th> 
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -25,5 +35,5 @@
             {% endfor %}
         </tbody>
     </table>
-    <a href="{% url 'team_create' %}">Crear Equipo</a>
+</div>
 {% endblock %}

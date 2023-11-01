@@ -4,11 +4,15 @@
 {% block title %}Editar Jugador{% endblock %}
 
 {% block content %}
-    <h1>Editar Jugador</h1>
+<div class="body-container">
+    <h2 class="title">Editar Jugador</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar Cambios</button>
+        <div class="btn-container">
+            <a href="{% url 'player_list' %}" class="link-btn">Volver a la lista de jugadores</a>
+            <button type="submit" class="btn">Guardar Cambios</button>
+        </div>
     </form>
-    <a href="{% url 'player_list' %}">Volver a la lista de jugadores</a>
+</div>
 {% endblock %}

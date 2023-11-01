@@ -4,11 +4,15 @@
 {% block title %}Crear Partido{% endblock %}
 
 {% block content %}
+<div class="body-container">
     <h1>Crear Partido</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Guardar</button>
+        <div class="btn-container">
+        <button type="submit" class="btn">Guardar</button>
+        <a href="{% url 'match_list' %}" class="link-btn">Volver a la lista de partidos</a>
+        </div>
     </form>
-    <a href="{% url 'match_list' %}">Volver a la lista de partidos</a>
+</div>
 {% endblock %}
