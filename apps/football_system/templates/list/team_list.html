@@ -1,0 +1,28 @@
+{% extends '../base.html' %}
+
+{% block title %}Lista de Equipos{% endblock %}
+
+{% block content %}
+    <h1>Lista de Equipos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for team in teams %}
+                <tr>
+                    <td>{{ team.name }}</td>
+                    <td>{{ team.category }}</td>
+                    <td>
+                        <a href="{% url 'team_update' team.pk %}">Editar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'team_create' %}">Crear Equipo</a>
+{% endblock %}

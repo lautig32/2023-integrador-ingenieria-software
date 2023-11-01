@@ -1,68 +1,7 @@
+import os
+import io
 from django.shortcuts import render, redirect
 from . .models import *
-
-def views_matches(request):
-    user = request.user
-
-    try:
-        person = Person.objects.get(pk=user.pk)
-    except Person.DoesNotExist:
-        person = None
-
-    if person:
-        if person.type == Person.TypeAdministrator.PLANNER:
-            if request.method == 'POST':
-                if 'form-match-create' in request.POST:
-                    category = request.POST['match-category']
-                    local_team = request.POST['match-local-team']
-                    visiting_team = request.POST['match-visiting-team']
-                    date = request.POST['match-date']
-
-                    if category and local_team and visiting_team:
-                        Match.objects.create(
-                            category=FootballCategory.objects.get(pk=category), 
-                            local_team=Team.objects.get(pk=local_team), 
-                            visiting_team=Team.objects.get(pk=visiting_team),
-                            date = date,
-                        )
-
-                elif 'form-match-edit' in request.POST:
-                    pk = request.POST['id']
-                    category = request.POST['match-category']
-                    local_team = request.POST['match-local-team']
-                    visiting_team = request.POST['match-visiting-team']
-
-                    match = Match.objects.get(pk=pk)
-
-                    match.category = category
-                    match.local_team = local_team
-                    match.visiting_team = visiting_team
-                    match.save_base()
-
-            context = {
-                'user': person,
-                'matches': Match.objects.all(),
-                'teams': Team.objects.all(),
-                'categories': FootballCategory.objects.all(),
-            }
-
-            return render(request, 'matches.html', context)
-
-        else:
-            context = {
-                'user': person,
-                'matches': Match.objects.all(),
-                'categories': FootballCategory.objects.all(),
-            }
-            
-            return render(request, 'matches.html', context)
-    else:
-        context = {
-            'matches': Match.objects.all(),
-            'categories': FootballCategory.objects.all(),
-        }
-
-        return render(request, 'matches.html', context)
 
 def views_clubs(request):
     user = request.user
@@ -72,13 +11,9 @@ def views_clubs(request):
     except Person.DoesNotExist:
         person = None
 
-    print(person)
-
     if person:
         if person.type == Person.TypeAdministrator.TECHNICAL_DIRECTOR:
-            print("User valid")
             if request.method == 'POST':
-                print("request post")
                 if 'form-player-create' in request.POST:
                     name = request.POST['player-name']
                     team = request.POST['player-team']
@@ -100,12 +35,24 @@ def views_clubs(request):
 
                 elif 'form-team-create' in request.POST:
                     name = request.POST['team-name']
-                    category = request.POST['team-category']  
+                    category = request.POST['team-category']
+                    logo = request.FILES.get('team-logo', None)  # Accede al campo de archivo usando request.FILES
 
-                    if name and category:
+                    if name and category and logo:
+                        # Abre el archivo en modo lectura
+                        with open(logo.name, 'rb') as logo_file:
+                            # Lee el contenido del archivo y almacénalo en un búfer
+                            buffer = io.BytesIO(logo_file.read())
+
+                        # Realiza operaciones con el contenido del búfer, como guardar en el campo 'logo' del modelo Team
                         category = FootballCategory.objects.get(pk=category)
                         club = person.club
-                        Team.objects.get_or_create(name=name, club=club, category=category) 
+                        team, created = Team.objects.get_or_create(name=name, club=club, category=category)
+
+                        # Guarda el contenido del búfer en el campo 'logo' del objeto Team
+                        team.logo.save(str(logo), buffer, save=True)
+
+                        buffer.close()
 
                 elif 'form-team-edit' in request.POST:
                     pk = request.POST['id']

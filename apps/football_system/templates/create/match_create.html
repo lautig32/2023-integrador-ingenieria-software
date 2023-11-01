@@ -1,0 +1,13 @@
+{% extends '../base.html' %}
+
+{% block title %}Crear Partido{% endblock %}
+
+{% block content %}
+    <h1>Crear Partido</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Guardar</button>
+    </form>
+    <a href="{% url 'match_list' %}">Volver a la lista de partidos</a>
+{% endblock %}

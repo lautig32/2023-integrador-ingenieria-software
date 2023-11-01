@@ -1,33 +1,32 @@
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" type="text/css" href="../static/css/index.css">
-        <link rel="stylesheet" type="text/css" href="../static/css/navbar.css">
-        <script src="../static/js/navbar.js"></script>
-    </head>
-    <body>
-      <ul class="navbar">
-            <li><a href="{% url 'home' %}">Inicio</a></li>  
-            <li><a href="{% url 'matches' %}">Partidos</a></li>
-            {% if user.type == 'TD' %}
-              <li><a href="{% url 'clubs' %}">Club</a></li>
-            {% endif %}
-            <li>
-                {% if user.is_authenticated %}
-                <div class="dropdown">  
-                  <button class="dropbtn">{{ user.username }} &#9662;</button>
-                  <div class="dropdown-content">
-                    <ul>
-                      <li><a href="{% url 'profile' %}">Mi perfil</a></li>
-                      <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
-                    </ul>
-                  </div>  
-                </div>
-              {% else %}
-                <a href="{% url 'login' %}">Iniciar sesión</a>
-              {% endif %}
-            </li>
-        </ul>
-    </body>
-</html>
-
+<nav>
+  <head>
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="../static/css/navbar.css">
+    <script src="../static/js/navbar.js"></script>
+  </head>
+  <div>
+    <ul class="navbar">
+      <li><a href="{% url 'home' %}">Inicio</a></li>  
+      <li><a href="{% url 'match_list' %}">Partidos</a></li>
+      {% if user.type == 'TD' %}
+        <li><a href="{% url 'team_list' %}">Equipos</a></li>
+        <li><a href="{% url 'player_list' %}">Jugadores</a></li>
+      {% endif %}
+      <li>
+          {% if user.is_authenticated %}
+          <div class="dropdown">  
+            <button class="dropbtn">{{ user.username }} &#9662;</button>
+            <div class="dropdown-content">
+              <ul>
+                <li><a href="{% url 'profile' %}">Mi perfil</a></li>
+                <li><a href="{% url 'logout' %}">Cerrar sesión</a></li>
+              </ul>
+            </div>  
+          </div>
+        {% else %}
+          <a href="{% url 'login' %}">Iniciar sesión</a>
+        {% endif %}
+      </li>
+    </ul>
+  </div>
+</nav>

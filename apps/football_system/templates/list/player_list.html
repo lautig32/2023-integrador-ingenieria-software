@@ -1,0 +1,12 @@
+{% extends '../base.html' %}
+
+{% block title %}Lista de Jugadores{% endblock %}
+
+{% block content %}
+    <ul>
+        {% for player in players %}
+            <li>{{ player }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'player_create' %}">Crear Jugador</a>
+{% endblock %}
