@@ -26,25 +26,3 @@ function searchTable() {
 }
 
 
-function filterTable() {
-    var select = document.getElementById("table-filter-select");
-    var selectedValue = select.value;
-    var rows = document.getElementsByClassName("match-row");
-    var currentDate = new Date();
-    
-    for (var i = 1; i < rows.length; i++) {
-        var row = rows[i];
-        var dateCell = row.querySelector("[data-date]");
-        var matchDate = new Date(dateCell.getAttribute("data-date"));
-    
-        if (selectedValue === "last-matches" && matchDate < currentDate) {
-            row.style.display = "table-row";
-        } else if (selectedValue === "ongoing-matches" && matchDate >= currentDate) {
-            row.style.display = "table-row";
-        } else if (selectedValue === "next-matches" && matchDate > currentDate) {
-            row.style.display = "table-row";
-        } else {
-            row.style.display = "none";
-        }
-    }
-}

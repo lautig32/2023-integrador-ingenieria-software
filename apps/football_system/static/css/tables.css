@@ -47,7 +47,9 @@ table td{
 .table-filter-slct{
     background-color: transparent;
     border: none;
+    border-radius: 5px;
     height: 30px;
+    width:auto;
     margin-top: 14px;
 }
 .table-filter-slct:hover{
