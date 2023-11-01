@@ -6,7 +6,7 @@ from django.http import JsonResponse
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
-
+from django.shortcuts import get_object_or_404
 from .models import *
 
 from .forms import *
@@ -21,6 +21,26 @@ def home(request):
     }
     
     return render(request, 'home.html', context)
+
+def get_match_info(request, match_id):
+    if request.method == "GET":
+        try:
+            # Consulta la base de datos para obtener la información del partido
+            match = Match.objects.get(id=match_id)
+            match_data = {
+                'id': match.id,
+                'date': match.date.strftime("%Y-%m-%dT%H:%M"),
+                'local_team': match.local_team.name,
+                'local_team_image': match.local_team_image.url,
+                'visiting_team': match.visiting_team.name,
+                'visiting_team_image': match.visiting_team_image.url,
+                'local_team_result': 44,
+                'visiting_team_result': 55
+            }
+            return JsonResponse(match_data)
+        except Match.DoesNotExist:
+            return JsonResponse({'error': 'Match not found'}, status=404)
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
 def login_view(request):
     if request.method == 'POST':

@@ -24,16 +24,39 @@ function closePopupMatch(){
 }
 
 let popupMatchData = document.getElementById("popup-match-data");
-function openPopupMatchData(matchID){
-    popupMatchData.classList.add("open-popup");
-    localStorage.setItem('currentMatchID', matchID);
-    
-    const prueba = document.querySelector('.prueba');
-    const currentMatchID = localStorage.getItem('currentMatchID');
-    prueba.textContent = currentMatchID;
+function openPopupMatchData(matchId) {
+    $.ajax({
+        url: '/get_match_info/' + matchId + '/',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            popupMatchData.classList.add("open-popup");
 
-    console.log(matchID); 
+            document.getElementById('match-date').value = data.date;
+            document.getElementById('local-team-name').value = data.local_team;
+            document.getElementById('local-team-goals').value = data.local_team_result;
+            document.getElementById('visiting-team-name').value = data.visiting_team;
+            document.getElementById('visiting-team-goals').value = data.visiting_team_result;
+
+            // Actualiza las vistas previas de las imágenes
+            var localTeamPicturePreview = document.getElementById('local-team-picture-preview');
+            if (localTeamPicturePreview) {
+                localTeamPicturePreview.style.display = "block";
+                localTeamPicturePreview.src = data.local_team_image;
+            }
+
+            var visitingTeamPicturePreview = document.getElementById('visiting-team-picture-preview');
+            if (visitingTeamPicturePreview) {
+                visitingTeamPicturePreview.style.display = "block";
+                visitingTeamPicturePreview.src = data.visiting_team_image;
+            }
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    });
 }
+
 function closePopupMatchData(){
     popupMatchData.classList.remove("open-popup");
 }
