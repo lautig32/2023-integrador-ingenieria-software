@@ -35,3 +35,7 @@ input[type="search"]:valid,input[type="search"]:focus{
     display:flex;
     flex-direction: row;
 }
+
+.table-filter-slct{
+    
+}

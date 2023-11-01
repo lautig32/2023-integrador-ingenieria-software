@@ -79,6 +79,9 @@ class Match(models.Model):
     local_team_image = models.ImageField(upload_to='match_images/', blank=True, null=True)
     visiting_team_image = models.ImageField(upload_to='match_images/', blank=True, null=True)
 
+    local_team_goals = models.PositiveIntegerField(default=0)
+    visiting_team_goals = models.PositiveIntegerField(default=0)
+
     recognition_local_team_image = models.ImageField(upload_to='recognition_match_images/', blank=True, null=True)
     recognition_visiting_team_image = models.ImageField(upload_to='recognition_match_images/', blank=True, null=True)
 

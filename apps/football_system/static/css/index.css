@@ -64,14 +64,6 @@ input[type="file"]:hover{
     cursor: pointer;
 }
 
-img{
-    background-color: transparent;
-    mix-blend-mode: multiply;
-}
-.next-match-teams{
-    text-transform: uppercase;
-}
-
 .btn-container{
     padding: 0 30px 10px;
     display: flex;

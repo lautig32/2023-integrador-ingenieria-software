@@ -27,7 +27,14 @@ body {
     color: #F5F5F5;
 }
 
-.banner-info{
+img{
+    background-color: transparent;
+    mix-blend-mode: multiply;
+}
+.next-match-logo{
+    
+}
+.next-match-info{
     align-items: center;
     justify-content: center;
     margin-left: auto;
@@ -35,12 +42,3 @@ body {
     display: block;
     text-align: center;
 }
-
-.banner-teams{
-    align-items: center;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-

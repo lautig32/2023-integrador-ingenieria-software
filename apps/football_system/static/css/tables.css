@@ -24,7 +24,7 @@ table{
     width: 90%;
     border-collapse:collapse;
     background-color: #EDF1D6;
-    margin: 20px auto;
+    margin: 0 auto;
     max-height: 100px;
 }
 table th{
@@ -38,17 +38,22 @@ table td{
     border-top: 1px solid lightgray;
 }
       
-.fiter-container{
+.filter-container{
     display: inline-flex;
     padding: 0px 100px;
+    margin-top: 10px;
 }
 
-select{
+.table-filter-slct{
     background-color: transparent;
     border: none;
     height: 30px;
     margin-top: 14px;
 }
-select:hover{
+.table-filter-slct:hover{
     text-decoration: underline;
+}
+
+.filter-lbl{
+    width: 60%;
 }

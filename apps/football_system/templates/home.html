@@ -10,17 +10,23 @@
         {% include 'navbar.html' %}
         <div class="background">
             <div class="banner">
-                {% if next_match %}
-                <div class="next-match-logo" id="local-team-logo">
-                    <img src="{{ next_match.local_team_logo}}" alt="{{ next_match.local_team_logo}}">
-                </div>
-                <div class="banner-info">
-                    <h1>Próximo partido</h1>
-                    <h1 class="next-match-teams">{{ next_match.local_team }} vs {{ next_match.visiting_team }}</h1>
-                    <h3>{{ next_match.date }}</h3>
-                </div>
-                <div class="next-match-logo" id="visiting-team-logo">
-                    <img src="{{ next_match.visiting}}" alt="{{ next_match.visiting_team_logo}}">
+                {% if next_match %}                
+                <div class="banner">
+                    {% if next_match.local_team_image %}
+                    <div class="next-match-logo">
+                        <img src="{{ next_match.local_team_image.url }}">
+                    </div>
+                    {% endif %}
+                    <div class="next-match-info">
+                        <h1>Próximo partido</h1>
+                        <h1 class="next-match-teams">{{ next_match.local_team }} vs {{ next_match.visiting_team }}</h1>
+                        <h3>{{ next_match.date }}</h3>
+                    </div>
+                    {% if next_match.visiting_team_image %}
+                    <div class="next-match-image">
+                        <img src="{{ next_match.visiting_team_image.url }}">
+                    </div>
+                    {% endif %}
                 </div>
                 {% else %}
                     <p>No hay próximos partidos programados.</p>

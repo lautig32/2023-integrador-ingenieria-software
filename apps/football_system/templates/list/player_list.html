@@ -26,7 +26,7 @@
         <tbody>
             {% for player in players %}
                 <tr>
-                    <td>{{ player.name }}</td>
+                    <td>{{ player.name }} {{player.surname}}</td>
                     <td>{{ player.team }}</td>
                     <td>
                         <a href="{% url 'player_update' player.pk %}">Editar</a>
