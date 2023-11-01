@@ -51,7 +51,7 @@ body {
     padding: 0 30px 30px;
     visibility: hidden;
     transition: transorm 0.4s, top 0.4s;
-    max-height: 80%;
+    max-height: 90%;
 }
 
 .open-popup{
@@ -107,6 +107,14 @@ input:focus + span{
 
 .span{
     transform: translateX(-10px) translateY(-18px);
+}
+
+.match-span{
+    color: #40513B ;
+    background-color: #9DC08B;
+    font-size: 0.7em;
+    transform: translateX(10px) translateY(-18px);
+    z-index: 1111;
 }
 
 input[type="file"]{

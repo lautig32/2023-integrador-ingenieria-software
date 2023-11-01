@@ -10,9 +10,9 @@
     <body>
         {% include 'navbar.html' %}
         {% if user.type == 'PR' %}
-        <div class="btn-container">
-            <button class="btn" onclick="openPopupMatch()">Crear partido</button>
-        </div>
+            <div class="btn-container">
+                <button class="btn" onclick="openPopupMatch()">Crear partido</button>
+            </div>
         {% endif %}
         <div class="search-container">
             <input type="search" class="search" id="matches-search" onkeyup="searchTable()" placeholder="Buscar partido por equipo...">
@@ -94,62 +94,59 @@
                     <h1>Partido</h1>
                     <form method="post" class="form" onchange="updatePopup()">
                         {% csrf_token %}
-                        {% for match in matches %}
-                            {% if match.id == currentMatchID %}
-                                <div class="match-general-data">
-                                    <div class="input-container">
-                                        <input type="text" class="text-input" id="match-category-input" name="match-category" value="">
-                                        <span for="match-category-input" class="spn">Categoría</span>
-                                    </div>
-                                    <div class="input-container">
-                                        <input type="datetime-local" class="date-input" id="match-date" name="match-date" value="">
-                                        <span for="match-date" class="date-input-spn">Fecha del partido</span>
-                                    </div>
-                                </div>
-                            {% endif %}
-                        {% endfor %}
+                        <div class="match-general-data">
+                            <div class="input-container">
+                                <input type="text" class="text-input" id="match-category-input" name="match-category" value="">
+                                <span for="match-category-input" class="match-spn">Categoría</span>
+                            </div>
+                            <div class="input-container">
+                                <input type="datetime-local" class="date-input" id="match-date" name="match-date" value="">
+                                <span for="match-date" class="match-spn">Fecha del partido</span>
+                            </div>
+                        </div>
                         <div class="match-teams-data">
                             <div class="local-team-container">
                                 <h3>Equipo local</h3>
                                 <div class="input-container">
-                                    <input type="text" class="text-input" id="local-team-name" name="local-team-name" value="" disabled>
-                                    <span for="local-team-name">Nombre del equipo</span>
+                                    <input type="text" class="text-input" id="local-team-name" name="local-team-name" disabled>
+                                    <span for="local-team-name" class="match-span">Nombre del equipo</span>
                                 </div>
                                 {% if user.type == 'PR' %}
                                     <div class="input-container">
                                         <input type="file" class="file-input" id="local-team-picture" name="local-team-picture" accept="Image/*" disabled>
-                                        <span for="local-team-picture">Foto de equipo</span>
+                                        <span for="local-team-picture" class="match-span">Foto de equipo</span>
                                         <img id="local-team-picture-preview" src="" alt="Vista previa de la imagen" style="display: none; max-width: 200px; max-height: 200px;">
                                     </div>
                                 {% endif %}
                                 <div class="input-container">
-                                    <input type="text" class="text-input" id="local-team-goals" name="local-team-goals" value="" disabled>
-                                    <span for="local-team-goals">Goles</span>
+                                    <input type="text" class="text-input" id="local-team-goals" name="local-team-goals" disabled>
+                                    <span for="local-team-goals" class="match-span">Goles</span>
                                 </div>
                             </div>
                             <div class="visiting-team-container">
                                 <h3>Equipo visitante</h3>
                                 <div class="input-container">
-                                    <input type="text" class="text-input" id="visiting-team-name" name="visiting-team-name" value="" disabled>
-                                    <span for="visiting-team-name">Nombre del equipo</span>
+                                    <input type="text" class="text-input" id="visiting-team-name" name="visiting-team-name" disabled>
+                                    <span for="visiting-team-name" class="match-span">Nombre del equipo</span>
                                 </div>
                                 {% if user.type == 'PR' %}
                                     <div class="input-container">
                                         <input type="file" class="file-input" id="visiting-team-picture" name="visiting-team-picture" accept="Image/*" disabled>
-                                        <span for="visiting-team-picture">Foto de equipo</span>
+                                        <span for="visiting-team-picture" class="match-span">Foto de equipo</span>
                                         <img id="visiting-team-picture-preview" src="" alt="Vista previa de la imagen" style="display: none; max-width: 200px; max-height: 200px;">
                                     </div>
                                 {% endif %}
                                 <div class="input-container">
-                                    <input type="text" class="text-input" id="visiting-team-goals" name="visiting-team-goals" value="" disabled>
-                                    <span for="visiting-team-goals">Goles</span>
+                                    <input type="text" class="text-input" id="visiting-team-goals" name="visiting-team-goals" disabled>
+                                    <span for="visiting-team-goals" class="match-span">Goles</span>
                                 </div>
                             </div>
                         </div>
                         <div class="btn-container">
                             <button class="btn" type="button" id="close-btn" onclick="closePopupMatchData()">Cerrar</button>
                             {% if user.type == 'PR' %}
-                            <button class="btn" type="button" id="edit-btn" onclick="enableEdition()">Editar</button>
+                            <button class="btn" type="button" id="edit-btn">Editar</button>
+                            <button class="btn" tye="button" id="cancel-btn" style="display: none;">Cancelar</button>
                             <button class="btn" type="submit" id="save-btn" style="display: none;">Guardar</button>
                             {% endif %}
                         </div>    
@@ -157,8 +154,8 @@
                 </div>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../static/js/popups.js"></script>
         <script src="../static/js/tables.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     </body>
 </html>

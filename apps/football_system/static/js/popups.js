@@ -7,6 +7,7 @@ function closePopupPlayer(){
     popupPlayer.classList.remove("open-popup");
 }
 
+
 let popupTeam = document.getElementById("popup-upload-team");
 function openPopupTeam(){
     popupTeam.classList.add("open-popup");
@@ -15,6 +16,7 @@ function closePopupTeam(){
     popupTeam.classList.remove("open-popup");
 }
 
+
 let popupMatch = document.getElementById("popup-upload-match");
 function openPopupMatch(){
     popupMatch.classList.add("open-popup");
@@ -22,6 +24,7 @@ function openPopupMatch(){
 function closePopupMatch(){
     popupMatch.classList.remove("open-popup");
 }
+
 
 let popupMatchData = document.getElementById("popup-match-data");
 function openPopupMatchData(matchId) {
@@ -56,10 +59,10 @@ function openPopupMatchData(matchId) {
         }
     });
 }
-
 function closePopupMatchData(){
     popupMatchData.classList.remove("open-popup");
 }
+
 
 let popupTeamData = document.getElementById("popup-team-data");
 function openPopupTeamData(){
@@ -69,6 +72,7 @@ function closePopupTeamData(){
     popupTeamData.classList.remove("open-popup");
 }
 
+
 let popupPlayerData = document.getElementById("popup-player-data");
 function openPopupPlayerData(){
     popupPlayerData.classList.add("open-popup");
@@ -76,6 +80,7 @@ function openPopupPlayerData(){
 function closePopupPlayerData(){
     popupPlayerData.classList.remove("open-popup");
 }
+
 
 function changeFileInputColor(){
     let fileInput = document.getElementsByClassName("file-input");
@@ -86,12 +91,14 @@ function changeFileInputColor(){
     }
 }
 
+
 function enableEdition(){
     let textInput = document.getElementsByClassName("text-input");
     let fileInput = document.getElementsByClassName("file-input");
     textInput.removeAttribute('disabled');
     fileInput.removeAttribute('disabled');
 }
+
 
 //no mostrar equipo local en select de equipo visitante
 function updateTeamOptions() {
@@ -117,3 +124,24 @@ function updateTeamOptions() {
 }
 
 
+//btn editar
+document.getElementById('edit-btn').addEventListener('click', function (event) {
+    event.preventDefault();
+    let inputs = document.getElementsByClassName('text-input');
+    let files = document.getElementsByClassName('file-input');
+    let closeBtn = document.getElementById('close-btn');
+    let cancelBtn = document.getElementById('cancel-btn');
+    let saveBtn = document.getElementById('save-btn');
+
+    for (let i = 0; i < inputs.length; i++) {
+        inputs[i].removeAttribute('disabled');
+    }
+    for (let i = 0; i < files.length; i++) {
+        files[i].removeAttribute('disabled');
+    }
+
+    this.style.display = 'none';
+    closeBtn.style.display = 'none';
+    cancelBtn.style.display = 'inline-block';
+    saveBtn.style.display = 'inline-block';
+})
