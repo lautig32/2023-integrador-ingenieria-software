@@ -109,40 +109,39 @@
                                 </div>
                             {% endif %}
                         {% endfor %}
-                        
                         <div class="match-teams-data">
                             <div class="local-team-container">
                                 <h3>Equipo local</h3>
                                 <div class="input-container">
                                     <input type="text" class="text-input" id="local-team-name" name="local-team-name" value="{{ match.local_team }}" disabled>
-                                    <span for="local-team-name">Nombre del equipo</span>
+                                    <span for="local-team-name" class="text-input-span">Nombre del equipo</span>
                                 </div>
                                 {% if user.type == 'PR' %}
                                     <div class="input-container">
                                         <input type="file" class="file-input" id="local-team-picture" name="local-team-picture" accept="Image/*" disabled>
-                                        <span for="local-team-picture">Foto de equipo</span>
+                                        <span for="local-team-picture" class="text-input-span">Foto de equipo</span>
                                     </div>
                                 {% endif %}
                                 <div class="input-container">
                                     <input type="text" class="text-input" id="local-team-goals" name="local-team-goals" value="{{ match.local_team_goals }}" disabled>
-                                    <span for="local-team-goals">Goles</span>
+                                    <span for="local-team-goals" class="text-input-span">Goles</span>
                                 </div>
                             </div>
                             <div class="visiting-team-container">
                                 <h3>Equipo visitante</h3>
                                 <div class="input-container">
                                     <input type="text" class="text-input" id="visiting-team-name" name="visiting-team-name" value="{{ match.visiting_team }}" disabled>
-                                    <span for="visiting-team-name">Nombre del equipo</span>
+                                    <span for="visiting-team-name" class="text-input-span">Nombre del equipo</span>
                                 </div>
                                 {% if user.type == 'PR' %}
                                     <div class="input-container">
                                         <input type="file" class="file-input" id="visiting-team-picture" name="visiting-team-picture" accept="Image/*" disabled>
-                                        <span for="visiting-team-picture">Foto de equipo</span>
+                                        <span for="visiting-team-picture" class="text-input-span">Foto de equipo</span>
                                     </div>
                                 {% endif %}
                                 <div class="input-container">
                                     <input type="text" class="text-input" id="visiting-team-goals" name="visiting-team-goals" value="{{ match.visiting_team_goals }}" disabled>
-                                    <span for="visiting-team-goals">Goles</span>
+                                    <span for="visiting-team-goals" class="text-input-span">Goles</span>
                                 </div>
                             </div>
                         </div>
