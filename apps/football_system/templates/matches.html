@@ -34,11 +34,11 @@
                     <th></th>
                 </tr>
                 {% for match in matches %}  
-                <tr class="match-row">
+                <tr class="match-row" data-id="{{ match.id }}">
                     <td data-date="{{ match.date }}">{{ match.date }}</td>
                     <td>{{match.local_team}} vs {{match.visiting_team}}</td>
                     <td>{{match.local_team_result}} - {{match.visiting_team_result}}</td>
-                    <td><a href="#" onclick="openPopupMatchData()">Ver mas..</a></td>
+                    <td><a href="#" onclick= openPopupMatchData({{match.id}})>Ver más...</a></td>
                 </tr>
                 {% endfor %}
             </table>
@@ -50,7 +50,7 @@
                     <form method="post" class="form">
                         {% csrf_token %}
                         <div class="input-container">
-                            <select class="select" id="match-category-slct" name="match-category" required="required">
+                            <select class="select" id="match-category-slct" name="match-category" onchange="updateTeamOptions()" required="required">
                                 <option selected="selected"></option>
                                 {% for category in categories %}
                                     <option value="{{category.id}}">{{category.name}}</option>
@@ -92,46 +92,56 @@
             <div class="data-upload-container" id="match-data-popup">
                 <div class="popup-window" id="popup-match-data">
                     <h1>Partido</h1>
-                    <form method="post" class="form">
+                    <form method="post" class="form" onchange="updatePopup()">
+                        <p class="prueba">prueba</p>
                         {% csrf_token %}
-                        <div class="match-general-data">
-                            <div class="input-container">
-                                <input type="text" class="text-input" id="match-category-input" name="match-category" value="{{match.category}}">
-                                <span for="match-category-input" class="spn">Categoría</span>
-                            </div>
-                            <div class="input-container">
-                                <input type="datetime-local" class="date-input" id="match-date" name="match-date" value="{{match.date}}">
-                                <span for="match-date" class="date-input-spn">Fecha del partido</span>
-                            </div>
-                        </div>
+                        {% for match in matches %}
+                            {% if match.id == currentMatchID %}
+                                <div class="match-general-data">
+                                    <div class="input-container">
+                                        <input type="text" class="text-input" id="match-category-input" name="match-category" value="{{match.category}}">
+                                        <span for="match-category-input" class="spn">Categoría</span>
+                                    </div>
+                                    <div class="input-container">
+                                        <input type="datetime-local" class="date-input" id="match-date" name="match-date" value="{{match.date}}">
+                                        <span for="match-date" class="date-input-spn">Fecha del partido</span>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        
                         <div class="match-teams-data">
                             <div class="local-team-container">
                                 <h3>Equipo local</h3>
                                 <div class="input-container">
-                                    <input type="text" class="text-input" id="local-team-name" name="local-team-name" value="{{ match.local_team }}" disabled="disabled">
+                                    <input type="text" class="text-input" id="local-team-name" name="local-team-name" value="{{ match.local_team }}" disabled>
                                     <span for="local-team-name">Nombre del equipo</span>
                                 </div>
+                                {% if user.type == 'PR' %}
+                                    <div class="input-container">
+                                        <input type="file" class="file-input" id="local-team-picture" name="local-team-picture" accept="Image/*" disabled>
+                                        <span for="local-team-picture">Foto de equipo</span>
+                                    </div>
+                                {% endif %}
                                 <div class="input-container">
-                                    <input type="file" class="file-input" id="local-team-picture" name="local-team-picture" accept="Image/*" disabled="disabled">
-                                    <span for="local-team-picture">Foto de equipo</span>
-                                </div>
-                                <div class="input-container">
-                                    <input type="text" class="text-input" id="local-team-goals" name="local-team-goals" value="{{ match.local_team_goals }}" disabled="disabled">
+                                    <input type="text" class="text-input" id="local-team-goals" name="local-team-goals" value="{{ match.local_team_goals }}" disabled>
                                     <span for="local-team-goals">Goles</span>
                                 </div>
                             </div>
                             <div class="visiting-team-container">
                                 <h3>Equipo visitante</h3>
                                 <div class="input-container">
-                                    <input type="text" class="text-input" id="visiting-team-name" name="visiting-team-name" value="{{ match.visiting_team }}" disabled="disabled">
+                                    <input type="text" class="text-input" id="visiting-team-name" name="visiting-team-name" value="{{ match.visiting_team }}" disabled>
                                     <span for="visiting-team-name">Nombre del equipo</span>
                                 </div>
+                                {% if user.type == 'PR' %}
+                                    <div class="input-container">
+                                        <input type="file" class="file-input" id="visiting-team-picture" name="visiting-team-picture" accept="Image/*" disabled>
+                                        <span for="visiting-team-picture">Foto de equipo</span>
+                                    </div>
+                                {% endif %}
                                 <div class="input-container">
-                                    <input type="file" class="file-input" id="visiting-team-picture" name="visiting-team-picture" accept="Image/*" disabled="disabled">
-                                    <span for="visiting-team-picture">Foto de equipo</span>
-                                </div>
-                                <div class="input-container">
-                                    <input type="text" class="text-input" id="visiting-team-goals" name="visiting-team-goals" value="{{ match.visiting_team_goals }}" disabled="disabled">
+                                    <input type="text" class="text-input" id="visiting-team-goals" name="visiting-team-goals" value="{{ match.visiting_team_goals }}" disabled>
                                     <span for="visiting-team-goals">Goles</span>
                                 </div>
                             </div>
@@ -139,7 +149,7 @@
                         <div class="btn-container">
                             <button class="btn" id="close-btn" onclick="closePopupMatchData()">Cerrar</button>
                             {% if user.type == 'PR' %}
-                            <button class="btn" id="edit-btn">Editar</button>
+                            <button class="btn" id="edit-btn" onclick="enableEdition()">Editar</button>
                             <button class="btn" type="submit" id="save-btn" style="display: none;">Guardar</button>
                             {% endif %}
                         </div>    

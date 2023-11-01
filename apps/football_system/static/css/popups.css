@@ -194,9 +194,9 @@ input[type="file"]:hover{
     text-transform: uppercase;
 }
 
-select:valid + span,
-select:focus + span{
-    color: #40513B;
+.select:valid + span,
+.select:focus + span{
+    color: #40513B ;
     background-color: #9DC08B;
     font-size: 0.7em;
     transform: translateX(10px) translateY(-18px);

@@ -23,16 +23,22 @@ function closePopupMatch(){
     popupMatch.classList.remove("open-popup");
 }
 
-
 let popupMatchData = document.getElementById("popup-match-data");
-function openPopupMatchData(){
+function openPopupMatchData(matchID){
     popupMatchData.classList.add("open-popup");
+    localStorage.setItem('currentMatchID', matchID);
+    
+    const prueba = document.querySelector('.prueba');
+    const currentMatchID = localStorage.getItem('currentMatchID');
+    prueba.textContent = currentMatchID;
+
+    console.log(matchID); 
 }
 function closePopupMatchData(){
     popupMatchData.classList.remove("open-popup");
 }
 
-let popupTeamData = document.get ("popup-team-data");
+let popupTeamData = document.getElementById("popup-team-data");
 function openPopupTeamData(){
     popupTeamData.classList.add("open-popup");
 }
@@ -40,7 +46,7 @@ function closePopupTeamData(){
     popupTeamData.classList.remove("open-popup");
 }
 
-let popupPlayerData = document.get ("popup-player-data");
+let popupPlayerData = document.getElementById("popup-player-data");
 function openPopupPlayerData(){
     popupPlayerData.classList.add("open-popup");
 }
@@ -57,19 +63,34 @@ function changeFileInputColor(){
     }
 }
 
-//mostrar equipo dependiendo de categoria
-const matchCategorySelect = document.getElementById('match-category-slct');
-const teamOneSelect = document.getElementById('team-one-name');
-matchCategorySelect.addEventListener('change', function () {
-    const selectedCategory = matchCategorySelect.value;
-    const filteredTeams = teams.filter(team => team.category === selectedCategory);
-    while (teamOneSelect.options.length > 0) {
-        teamOneSelect.remove(0);
+function enableEdition(){
+    let textInput = document.getElementsByClassName("text-input");
+    let fileInput = document.getElementsByClassName("file-input");
+    textInput.removeAttribute('disabled');
+    fileInput.removeAttribute('disabled');
+}
+
+//no mostrar equipo local en select de equipo visitante
+function updateTeamOptions() {
+    var matchCategorySelect = document.getElementById('match-category-slct');
+    var teamOneSelect = document.getElementById('team-one-name');
+    var teamTwoSelect = document.getElementById('team-two-name');
+    
+    var selectedCategory = matchCategorySelect.value;
+    var filteredTeams = teams.filter(team => team.category === selectedCategory);
+
+    // Limpia las opciones actuales del segundo select
+    while (teamTwoSelect.options.length > 0) {
+        teamTwoSelect.remove(0);
     }
+
+    // Agrega las nuevas opciones basadas en la categoría seleccionada
     filteredTeams.forEach(team => {
-        const option = document.createElement('option');
+        var option = document.createElement('option');
         option.value = team.id;
         option.text = team.name;
-        teamOneSelect.appendChild(option);
+        teamTwoSelect.appendChild(option);
     });
-});
+}
+
+

@@ -1,25 +1,29 @@
 function searchTable() {
-    var input, filter, table, tr, td, i, j;
+    var input, filter, table, tr, th, td, i, j;
     input = document.getElementById("matches-search");
     filter = input.value.toUpperCase();
     table = document.getElementById("matches-tbl");
     tr = table.getElementsByTagName("tr");
     
-    for (i = 0; i < tr.length; i++) {
+    th = tr[0].getElementsByTagName("th");
+    for (i = 0; i < th.length; i++) {
+        th[i].style.display = "";
+    }
+    
+    for (i = 1; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td");
-        var found = false;  // Inicializa la variable found
+        var found = false;  
         
         for (j = 0; j < td.length; j++) {
             if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
-                found = true;  // Si se encuentra una coincidencia, establece found en true
-                break;  // No es necesario buscar más en esta fila
+                found = true; 
+                break;  
             }
         }
         
-        // Muestra u oculta la fila según si se encontró una coincidencia o no
         tr[i].style.display = found ? "" : "none";
     }
-};
+}
 
 
 function filterTable() {

@@ -42,10 +42,10 @@ urlpatterns = [
     # path('team/<int:pk>/update/', views_update.TeamUpdateView.as_view(), name='team_update'),
     # path('team/<int:pk>/delete/', views_delete.TeamDeleteView.as_view(), name='team_delete'),
 
-    # path('match/', views_list.MatchListView.as_view(), name='matches'),
-    # path('match/create/', views_create.MatchCreateView.as_view(), name='match_create'),
-    # path('match/<int:pk>/update/', views_update.MatchUpdateView.as_view(), name='match_update'),
-    # path('match/<int:pk>/delete/', views_delete.MatchDeleteView.as_view(), name='match_delete'),
+    path('match/', views_list.MatchListView.as_view(), name='matches'),
+    path('match/create/', views_create.MatchCreateView.as_view(), name='match_create'),
+    path('match/<int:pk>/update/', views_update.MatchUpdateView.as_view(), name='match_update'),
+    path('match/<int:pk>/delete/', views_delete.MatchDeleteView.as_view(), name='match_delete'),
 
     # path('player/', views_list.PlayerListView.as_view(), name='players'),
     # path('player/create/', views_create.PlayerCreateView.as_view(), name='player_create'),
