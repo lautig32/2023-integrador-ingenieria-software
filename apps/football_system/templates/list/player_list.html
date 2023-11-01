@@ -15,27 +15,25 @@
     <div class="btn-container">
         <a href="{% url 'player_create' %}" class="btn">Crear Jugador</a>
     </div>
-    <ul>
-        <table>
-            <thead>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Equipo</th> 
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for player in players %}
                 <tr>
-                    <th>Nombre</th>
-                    <th>Equipo</th> 
-                    <th>Acciones</th>
+                    <td>{{ player.name }}</td>
+                    <td>{{ player.team }}</td>
+                    <td>
+                        <a href="{% url 'player_update' player.pk %}">Editar</a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                {% for player in players %}
-                    <tr>
-                        <td>{{ player.name }}</td>
-                        <td>{{ player.team }}</td>
-                        <td>
-                            <a href="{% url 'player_update' player.pk %}">Editar</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </ul>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}

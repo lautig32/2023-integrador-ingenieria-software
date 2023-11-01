@@ -5,12 +5,13 @@
 
 {% block content %}
 <div class="body-container">
-    <h2 class="title">Editar Equipo</h2>
+    <h2 class="title">Editar equipo</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <div class="btn-container">
             <a href="{% url 'team_list' %}" class="link-btn">Volver a la lista de equipos</a> 
+            <a href="{% url 'team_delete' team.pk %}" class="link-btn">Eliminar equipo</a>
             <button type="submit" class="btn">Guardar Cambios</button>
         </div>
     </form>

@@ -11,13 +11,17 @@
         <div class="background">
             <div class="banner">
                 {% if next_match %}
-                    <div class="banner-info">
-                        <h2>Próximo partido</h2>
-                        <h4>{{ next_match.date }}</h4>
-                    </div>
-                    <div class="banner-teams">
-                        <h1>{{ next_match.local_team }} vs {{ next_match.visiting_team }}</h1>
-                    </div>
+                <div class="next-match-logo" id="local-team-logo">
+                    <img src="{{ next_match.local_team_logo}}" alt="{{ next_match.local_team_logo}}">
+                </div>
+                <div class="banner-info">
+                    <h1>Próximo partido</h1>
+                    <h1 class="next-match-teams">{{ next_match.local_team }} vs {{ next_match.visiting_team }}</h1>
+                    <h3>{{ next_match.date }}</h3>
+                </div>
+                <div class="next-match-logo" id="visiting-team-logo">
+                    <img src="{{ next_match.visiting}}" alt="{{ next_match.visiting_team_logo}}">
+                </div>
                 {% else %}
                     <p>No hay próximos partidos programados.</p>
                 {% endif %}

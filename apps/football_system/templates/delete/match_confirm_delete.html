@@ -1,15 +1,24 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/matches.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/tables.css' %}">
+<script src="{% static 'js/tables.js' %}"></script>
+{% endblock %}
 
 {% block title %}
     Confirmar Eliminación - {{ match.name }}
 {% endblock %}
 
 {% block content %}
-    <h1>Eliminar Partido</h1>
-    <p>¿Estás seguro de que deseas eliminar este partido?</p>
+    <h2 class="title">Eliminar partido</h2>
+    <p class="paragraph">¿Estás seguro de que deseas eliminar este partido?</p>
     <form method="post">
         {% csrf_token %}
-        <button type="submit">Sí, eliminar</button>
+        <div class="btn-container">
+            <a href="{% url 'match_list' %}" class="link-btn">Cancelar</a>
+            <button type="submit" class="btn">Sí, eliminar</button>
+        </div>
     </form>
-    <a href="{% url 'match_list' %}">Cancelar</a>
 {% endblock %}

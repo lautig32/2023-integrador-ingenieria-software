@@ -167,6 +167,7 @@ class Match(models.Model):
 
 class Player(models.Model):
     name = models.CharField(max_length=100)
+    surname = models.CharField(max_length=100, null=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='players/', blank=True, null=True)
 

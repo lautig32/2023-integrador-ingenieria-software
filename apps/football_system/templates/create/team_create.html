@@ -5,13 +5,13 @@
 
 {% block content %}
 <div class="body-container">
-    <h2 class="title">Crear Equipo</h2>
+    <h2 class="title">Alta de equipo</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
         <div class="btn-container">
-            <a href="{% url 'team_list' %}">Volver a la lista de equipos</a>
-            <button type="submit">Guardar</button>
+            <a href="{% url 'team_list' %}" class="link-btn">Volver a la lista de equipos</a>
+            <button type="submit" class="btn">Guardar</button>
         </div>
     </form>
     
