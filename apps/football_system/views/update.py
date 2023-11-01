@@ -1,7 +1,7 @@
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from ..models import Club, Person, FootballCategory, Team, Match, Player, PlayerSuspension
-from ..forms import TeamForm, MatchForm, PlayerForm
+from ..forms import *
 
 class TeamUpdateView(UpdateView):
     model = Team

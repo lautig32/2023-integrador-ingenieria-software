@@ -1,13 +1,14 @@
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from ..models import Club, Person, FootballCategory, Team, Match, Player, PlayerSuspension
+from ..models import *
 from ..forms import *
 
 class TeamCreateView(CreateView):
     model = Team
-    form_class = TeamForm
+    form_class = CreateTeamForm
     template_name = 'create/team_create.html'
     success_url = reverse_lazy('team_list')
+
 
 class MatchCreateView(CreateView):
     model = Match
@@ -17,6 +18,6 @@ class MatchCreateView(CreateView):
 
 class PlayerCreateView(CreateView):
     model = Player
-    form_class = PlayerForm
+    form_class = CreatePlayerForm
     template_name = 'create/player_create.html'
     success_url = reverse_lazy('player_list')

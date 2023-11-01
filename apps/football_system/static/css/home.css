@@ -31,6 +31,11 @@ img{
     background-color: transparent;
     mix-blend-mode: multiply;
 }
+
+.small-logo {
+    max-width: 100px;
+}
+
 .next-match-logo{
     
 }
