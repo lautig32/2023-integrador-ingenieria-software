@@ -181,7 +181,7 @@ input[type="file"]:hover{
 
 .select{
     width: 100%;
-    padding: 10px;
+    padding: 7px;   
     background-color: transparent;
     border: 2px solid #609966;   
     outline: none;
@@ -190,8 +190,8 @@ input[type="file"]:hover{
     font-size: 1em;
     transition: 0.1 ease;
     z-index: 1111;
-    color: black;   
-    text-transform: uppercase;
+    color: black;
+    cursor: pointer;
 }
 
 .select:valid + span,
