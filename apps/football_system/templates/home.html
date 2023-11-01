@@ -13,9 +13,9 @@
                 {% if next_match %}                
                 <div class="banner">
                     {% if next_match.local_team_image %}
-                    <div class="next-match-logo">
-                        <img src="{{ next_match.local_team_image.url }}">
-                    </div>
+                        <div class="next-match-logo">
+                            <img src="{{ next_match.local_team_image.url }}" alt="{{ next_match.local_team.name }} Logo" class="small-logo">
+                        </div>
                     {% endif %}
                     <div class="next-match-info">
                         <h1>Próximo partido</h1>
@@ -23,9 +23,9 @@
                         <h3>{{ next_match.date }}</h3>
                     </div>
                     {% if next_match.visiting_team_image %}
-                    <div class="next-match-image">
-                        <img src="{{ next_match.visiting_team_image.url }}">
-                    </div>
+                        <div class="next-match-image">
+                            <img src="{{ next_match.visiting_team_image.url }}" alt="{{ next_match.visiting_team.name }} Logo" class="small-logo">
+                        </div>
                     {% endif %}
                 </div>
                 {% else %}
