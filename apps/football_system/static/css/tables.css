@@ -26,6 +26,7 @@ table{
     background-color: #EDF1D6;
     margin: 0 auto;
     max-height: 100px;
+    margin-top: 15px;
 }
 table th{
     text-align: center;
