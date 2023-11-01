@@ -31,6 +31,7 @@
         </div>
         <div class="btn-container">
             <a href="{% url 'match_list' %}" class="link-btn">Volver a la lista de partidos</a>
+            <a href="{% url 'match_delete' match.pk %}" class="link-btn">Eliminar partido</a>
             <button type="submit" class="btn">Guardar cambios</button>
         </div>
     </form>
