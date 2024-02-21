@@ -12,9 +12,9 @@
             <div class="banner">
                 {% if next_match %}                
                 <div class="banner">
-                    {% if next_match.local_team_image %}
+                    {% if next_match.local_team.logo %}
                         <div class="next-match-logo">
-                            <img src="{{ next_match.local_team_image.url }}" alt="{{ next_match.local_team.name }} Logo" class="small-logo">
+                            <img src="{{ next_match.local_team.logo.url }}" alt="{{ next_match.local_team.name }} Logo" class="small-logo">
                         </div>
                     {% endif %}
                     <div class="next-match-info">
@@ -22,9 +22,9 @@
                         <h1 class="next-match-teams">{{ next_match.local_team }} vs {{ next_match.visiting_team }}</h1>
                         <h3>{{ next_match.date }}</h3>
                     </div>
-                    {% if next_match.visiting_team_image %}
+                    {% if next_match.visiting_team.logo %}
                         <div class="next-match-image">
-                            <img src="{{ next_match.visiting_team_image.url }}" alt="{{ next_match.visiting_team.name }} Logo" class="small-logo">
+                            <img src="{{ next_match.visiting_team.logo.url }}" alt="{{ next_match.visiting_team.name }} Logo" class="small-logo">
                         </div>
                     {% endif %}
                 </div>

@@ -18,14 +18,13 @@
             <div>
                 {% if form.instance.recognition_local_team_image %}
                 <h2>Previsualización de la Imagen del Equipo Local</h2>
-                <img src="{{ form.instance.recognition_local_team_image.url }}" alt="{{ form.instance.local_team.name }}">
+                <img src="{{ form.instance.recognition_local_team_image.url }}" alt="{{ form.instance.local_team.name }}" class="small-image">
                 {% endif %}
             </div>
-
             <div>
                 {% if form.instance.recognition_visiting_team_image %}
                 <h2>Previsualización de la Imagen del Equipo Visitante</h2>
-                <img src="{{ form.instance.recognition_visiting_team_image.url }}" alt="{{ form.instance.visiting_team.name }}">
+                <img src="{{ form.instance.recognition_visiting_team_image.url }}" alt="{{ form.instance.visiting_team.name }}" class="small-image">
                 {% endif %}
             </div>
         </div>

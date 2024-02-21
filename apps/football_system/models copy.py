@@ -1,8 +1,7 @@
 from django.core.files import File
 from django.db import models
+from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 
 from apps.recognition_system.models import FaceRecognition
 
@@ -81,13 +80,9 @@ class Match(models.Model):
     local_team_image = models.ImageField(upload_to='match_images/', blank=True, null=True)
     visiting_team_image = models.ImageField(upload_to='match_images/', blank=True, null=True)
 
-    local_team_goals = models.PositiveIntegerField(default=0)
-    visiting_team_goals = models.PositiveIntegerField(default=0)
-
     recognition_local_team_image = models.ImageField(upload_to='recognition_match_images/', blank=True, null=True)
     recognition_visiting_team_image = models.ImageField(upload_to='recognition_match_images/', blank=True, null=True)
 
-    images_processed = models.BooleanField(default=False)
 
     date = models.DateTimeField()
 
@@ -97,7 +92,7 @@ class Match(models.Model):
 
     def __str__(self):
         return f"{self.local_team} vs {self.visiting_team}"
-    
+
     def clean(self):
         local_team_image = self.local_team_image
         visiting_team_image = self.visiting_team_image
@@ -132,58 +127,44 @@ class Match(models.Model):
     
     def process_image_local_team(self, image):
         images_search = []
-        player_search = []
 
         qs_search_players = Player.objects.filter(team=self.local_team)
 
-        if qs_search_players.count() > 0:
+        for qs in qs_search_players:
+            images_search.append(qs.photo.url)
 
-            for qs in qs_search_players:
-                if qs.photo:
-                    player_search.append(player_search)
-                    images_search.append(qs.photo.url)
+        face_recognition = FaceRecognition(images_search)
 
-            face_recognition = FaceRecognition(images_search, player_search)
+        imagen_objetivo_path = f"{self.local_team_image.url}"
 
-            imagen_objetivo_path = f"{self.local_team_image.url}"
+        result_image = face_recognition.recognize_faces(imagen_objetivo_path)
 
-            result_image = face_recognition.recognize_faces(image)
+        processed_image = result_image
 
-            processed_image = result_image
-
-            return processed_image
+        return processed_image
     
     def process_image_visiting_team(self, image):
         images_search = []
-        player_search = []
 
         qs_search_players = Player.objects.filter(team=self.visiting_team)
 
-        if qs_search_players.count() > 0:
+        for qs in qs_search_players:
+            images_search.append(qs.photo.url)
 
-            for qs in qs_search_players:
-                if qs.photo:
-                    player_search.append(player_search)
-                    images_search.append(qs.photo.url)
+        face_recognition = FaceRecognition(images_search)
 
-            face_recognition = FaceRecognition(images_search, player_search)
+        imagen_objetivo_path = f"{self.visiting_team_image.url}"
 
-            imagen_objetivo_path = f"{self.visiting_team_image.url}"
+        result_image = face_recognition.recognize_faces(imagen_objetivo_path)
 
-            result_image = face_recognition.recognize_faces(image)
+        processed_image = result_image
 
-            processed_image = result_image
-
-            return processed_image
+        return processed_image
 
 class Player(models.Model):
     name = models.CharField(max_length=100)
-    surname = models.CharField(max_length=100, null=True)
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     photo = models.ImageField(upload_to='players/', blank=True, null=True)
-
-    is_suspended = models.BooleanField(default=False)
-
 
     class Meta:
         verbose_name = 'Jugador'

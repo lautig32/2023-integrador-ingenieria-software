@@ -5,9 +5,8 @@ import face_recognition
 from django.core.files.base import ContentFile
 
 class FaceRecognition:
-    def __init__(self, image_list, person_list=None):
+    def __init__(self, image_list):
         self.image_list = image_list
-        self.person_interest = person_list
         self.encodings_personas_interes = []
         self.load_person_images()
 
@@ -27,7 +26,7 @@ class FaceRecognition:
     def recognize_faces(self, imagen_objetivo_path):
         recognized_faces = []
 
-        imagen_objetivo_path = imagen_objetivo_path
+        imagen_objetivo_path = imagen_objetivo_path.lstrip('/')
 
         imagenes_objetivo = [
             face_recognition.load_image_file(imagen_objetivo_path),

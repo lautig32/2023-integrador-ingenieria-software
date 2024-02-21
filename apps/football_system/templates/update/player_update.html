@@ -6,13 +6,13 @@
 {% block content %}
 <div class="body-container">
     <h2 class="title">Editar jugador</h2>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
         <div class="btn-container">
             <a href="{% url 'player_list' %}" class="link-btn">Volver a la lista de jugadores</a>
             <a href="{% url 'player_delete' player.pk %}" class="link-btn">Eliminar jugador</a>
-            <button type="submit" class="btn">Guardar Cambios</button>
+            <button type="submit" class="btn">Guardar cambios</button>
         </div>
     </form>
 </div>
